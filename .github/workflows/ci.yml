@@ -1,0 +1,32 @@
+name: Test Build
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-build:
+    name: 👷 Test & Build 
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 3
+      fail-fast: false
+      matrix:
+        goVer: ['1.21', '1.22']
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go ${{ matrix.goVer }}
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.goVer }}
+
+      - name: Test via ${{ matrix.goVer }}
+        run: |
+          go test -coverprofile cover.out -v -race ./...
+          go tool cover -func=cover.out
