@@ -63,10 +63,13 @@ type Descriptions struct {
 	Checksum        string `json:"checksum,omitempty"`
 }
 
+
+// Create a new concept in the organization source.
 func (c *Client) CreateConcept(ctx context.Context, concept *Concept) (*Concept, error) {
 	var resp Concept
+	var conceptsPath = getConceptPath()
 
-	err := c.makeRequest(ctx, http.MethodPost, "concepts/", nil, concept, resp)
+	err := c.makeRequest(ctx, http.MethodPost, conceptsPath, nil, concept, resp)
 	if err != nil {
 		return nil, err
 	}
