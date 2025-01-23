@@ -57,3 +57,12 @@ func NewClient(baseURL string, token string, options ...ClientOption) (*Client, 
 
 	return client, nil
 }
+
+func getValuesetPath() string {
+    return os.Getenv("OCL_BASE_URL") + "/orgs" + os.Getenv("OCL_ORG") + "/ValueSet/"
+}
+
+
+func getConceptPath() string {
+	return os.Getenv("OCL_BASE_URL") + "/orgs" + os.Getenv("OCL_ORG") + "/concepts/"
+}
