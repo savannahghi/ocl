@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/savannahghi/ocl/compare/v1.0.1...v1.0.2) (2025-01-27)
+
+
+### Bug Fixes
+
+* update bool fields to strings ([#6](https://github.com/savannahghi/ocl/issues/6)) ([ac838d7](https://github.com/savannahghi/ocl/commit/ac838d733e9d1486a77329c1219283c6c66f4bbf))
+
 ## [1.0.1](https://github.com/savannahghi/ocl/compare/v1.0.0...v1.0.1) (2025-01-27)
 
 
