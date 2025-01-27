@@ -66,7 +66,7 @@ type Descriptions struct {
 func (c *Client) CreateConcept(ctx context.Context, concept *Concept, headers *Headers) (*Concept, error) {
 	var resp Concept
 
-	err := c.makeRequest(ctx, http.MethodPost, composeConceptsURL(headers), nil, concept, resp)
+	err := c.makeRequest(ctx, http.MethodPost, composeConceptsURL(headers), nil, concept, &resp)
 	if err != nil {
 		return nil, err
 	}
