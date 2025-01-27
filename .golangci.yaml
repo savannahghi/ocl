@@ -8,11 +8,10 @@ linters:
   disable:
     - tagliatelle
     - varnamelen
-    - goerr113
+    - err113
     - wrapcheck
     - gomnd
     - unparam
-    - exhaustivestruct
     - exhaustruct
     - mnd
     - canonicalheader

@@ -63,13 +63,26 @@ type Descriptions struct {
 	Checksum        string `json:"checksum,omitempty"`
 }
 
-func (c *Client) CreateConcept(ctx context.Context, concept *Concept) (*Concept, error) {
+func (c *Client) CreateConcept(ctx context.Context, concept *Concept, headers *Headers) (*Concept, error) {
 	var resp Concept
 
-	err := c.makeRequest(ctx, http.MethodPost, "concepts/", nil, concept, resp)
+	err := c.makeRequest(ctx, http.MethodPost, composeConceptsURL(headers), nil, concept, resp)
 	if err != nil {
 		return nil, err
 	}
 
 	return &resp, nil
+}
+
+// composeConceptsURL forms the create/get concepts url. It follows this path
+// /orgs/{org}/sources/{source}/concepts/.
+func composeConceptsURL(headers *Headers) string {
+	return composeOrgSourcePath(headers) + "/concepts/"
+}
+
+// composeOrgSourcePath creates a url path with the org & source set. This is because most of the
+// APIs in OCL are namespaced to the source and organisation. It will follow this structure
+// /orgs/{org}/sources/{source}.
+func composeOrgSourcePath(headers *Headers) string {
+	return "orgs/" + headers.Organisation + "/sources/" + headers.Source
 }

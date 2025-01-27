@@ -102,3 +102,14 @@ func (c *Client) makeRequest(
 
 	return c.readResponse(resp, result)
 }
+
+// Headers represents the custom headers sent to the client. In OCL, concepts are namespaced
+// with Organisations and sources e.g You can have WHO as an org, and many sources within that
+// org e.g ICD-10, ICD-11.
+//
+// The idea is that the client should send the source and org as headers so that the library will
+// correctly create the API URL.
+type Headers struct {
+	Organisation string `json:"organisation,omitempty"`
+	Source       string `json:"source,omitempty"`
+}
