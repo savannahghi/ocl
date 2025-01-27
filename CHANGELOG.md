@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/savannahghi/ocl/compare/v1.0.3...v1.0.4) (2025-01-27)
+
+
+### Bug Fixes
+
+* update fields types ([#10](https://github.com/savannahghi/ocl/issues/10)) ([1c30def](https://github.com/savannahghi/ocl/commit/1c30def20421f1258089a0bff5abeed5e8302bc8))
+
 ## [1.0.3](https://github.com/savannahghi/ocl/compare/v1.0.2...v1.0.3) (2025-01-27)
 
 
