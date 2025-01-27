@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/savannahghi/ocl/compare/v1.0.2...v1.0.3) (2025-01-27)
+
+
+### Bug Fixes
+
+* pass pointer to unmarshall method ([#8](https://github.com/savannahghi/ocl/issues/8)) ([369d891](https://github.com/savannahghi/ocl/commit/369d891cb96a2e5d6a1a00e8c93c00a0a71449e7))
+
 ## [1.0.2](https://github.com/savannahghi/ocl/compare/v1.0.1...v1.0.2) (2025-01-27)
 
 
