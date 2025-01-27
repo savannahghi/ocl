@@ -17,7 +17,7 @@ type Concept struct {
 	ConceptClass        string                 `json:"concept_class,omitempty"`
 	Datatype            string                 `json:"datatype,omitempty"`
 	URL                 string                 `json:"url,omitempty"`
-	Retired             bool                   `json:"retired,omitempty"`
+	Retired             string                 `json:"retired,omitempty"`
 	Source              string                 `json:"source,omitempty"`
 	Owner               string                 `json:"owner,omitempty"`
 	OwnerType           string                 `json:"owner_type,omitempty"`
@@ -47,7 +47,7 @@ type Names struct {
 	ExternalID      string `json:"external_id,omitempty"`
 	Type            string `json:"type,omitempty"`
 	Locale          string `json:"locale,omitempty"`
-	LocalePreferred bool   `json:"locale_preferred,omitempty"`
+	LocalePreferred string `json:"locale_preferred,omitempty"`
 	NameType        string `json:"name_type,omitempty"`
 	Checksum        string `json:"checksum,omitempty"`
 }
@@ -58,7 +58,7 @@ type Descriptions struct {
 	ExternalID      string `json:"external_id,omitempty"`
 	Type            string `json:"type,omitempty"`
 	Locale          string `json:"locale,omitempty"`
-	LocalePreferred bool   `json:"locale_preferred,omitempty"`
+	LocalePreferred string `json:"locale_preferred,omitempty"`
 	DescriptionType string `json:"description_type,omitempty"`
 	Checksum        string `json:"checksum,omitempty"`
 }
