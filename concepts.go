@@ -11,13 +11,13 @@ import (
 type Concept struct {
 	UUID                string                 `json:"uuid,omitempty"`
 	Extras              map[string]interface{} `json:"extras,omitempty"`
-	Checksums           string                 `json:"checksums,omitempty"`
+	Checksums           map[string]interface{} `json:"checksums,omitempty"`
 	ID                  string                 `json:"id,omitempty"`
 	ExternalID          string                 `json:"external_id,omitempty"`
 	ConceptClass        string                 `json:"concept_class,omitempty"`
 	Datatype            string                 `json:"datatype,omitempty"`
 	URL                 string                 `json:"url,omitempty"`
-	Retired             string                 `json:"retired,omitempty"`
+	Retired             bool                   `json:"retired,omitempty"`
 	Source              string                 `json:"source,omitempty"`
 	Owner               string                 `json:"owner,omitempty"`
 	OwnerType           string                 `json:"owner_type,omitempty"`
@@ -34,10 +34,10 @@ type Concept struct {
 	Type                string                 `json:"type,omitempty"`
 	UpdateComment       string                 `json:"update_comment,omitempty"`
 	VersionURL          string                 `json:"version_url,omitempty"`
-	UpdatedBy           time.Time              `json:"updated_by,omitempty"`
-	CreatedBy           time.Time              `json:"created_by,omitempty"`
-	PublicCanView       string                 `json:"public_can_view,omitempty"`
-	VersionedObjectID   string                 `json:"versioned_object_id,omitempty"`
+	UpdatedBy           string                 `json:"updated_by,omitempty"`
+	CreatedBy           string                 `json:"created_by,omitempty"`
+	PublicCanView       bool                   `json:"public_can_view,omitempty"`
+	VersionedObjectID   int                    `json:"versioned_object_id,omitempty"`
 	LatestSourceVersion string                 `json:"latest_source_version,omitempty"`
 }
 
@@ -47,7 +47,7 @@ type Names struct {
 	ExternalID      string `json:"external_id,omitempty"`
 	Type            string `json:"type,omitempty"`
 	Locale          string `json:"locale,omitempty"`
-	LocalePreferred string `json:"locale_preferred,omitempty"`
+	LocalePreferred bool   `json:"locale_preferred,omitempty"`
 	NameType        string `json:"name_type,omitempty"`
 	Checksum        string `json:"checksum,omitempty"`
 }
