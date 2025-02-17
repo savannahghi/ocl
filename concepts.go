@@ -42,14 +42,13 @@ type Concept struct {
 }
 
 type Names struct {
-	UUID            string `json:"uuid,omitempty"`
-	Name            string `json:"name,omitempty"`
-	ExternalID      string `json:"external_id,omitempty"`
-	Type            string `json:"type,omitempty"`
-	Locale          string `json:"locale,omitempty"`
-	LocalePreferred string `json:"locale_preferred,omitempty"`
-	NameType        string `json:"name_type,omitempty"`
-	Checksum        string `json:"checksum,omitempty"`
+	UUID       string `json:"uuid,omitempty"`
+	Name       string `json:"name,omitempty"`
+	ExternalID string `json:"external_id,omitempty"`
+	Type       string `json:"type,omitempty"`
+	Locale     string `json:"locale,omitempty"`
+	NameType   string `json:"name_type,omitempty"`
+	Checksum   string `json:"checksum,omitempty"`
 }
 
 type Descriptions struct {
@@ -58,7 +57,6 @@ type Descriptions struct {
 	ExternalID      string `json:"external_id,omitempty"`
 	Type            string `json:"type,omitempty"`
 	Locale          string `json:"locale,omitempty"`
-	LocalePreferred string `json:"locale_preferred,omitempty"`
 	DescriptionType string `json:"description_type,omitempty"`
 	Checksum        string `json:"checksum,omitempty"`
 }
