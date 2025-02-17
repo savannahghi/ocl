@@ -100,7 +100,24 @@ func (c *Client) makeRequest(
 		return err
 	}
 
-	return c.readResponse(resp, result)
+	defer resp.Body.Close()
+
+	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
+		body, err := io.ReadAll(resp.Body)
+		if err != nil {
+			return err
+		}
+
+		return fmt.Errorf("failed (HTTP %d): %s", resp.StatusCode, string(body))
+	}
+
+	if result != nil {
+		if err = c.readResponse(resp, result); err != nil {
+			return err
+		}
+	}
+
+	return nil
 }
 
 // Headers represents the custom headers sent to the client. In OCL, concepts are namespaced
