@@ -47,7 +47,7 @@ type Names struct {
 	ExternalID      string `json:"external_id,omitempty"`
 	Type            string `json:"type,omitempty"`
 	Locale          string `json:"locale,omitempty"`
-	LocalePreferred bool   `json:"locale_preferred,omitempty"`
+	LocalePreferred string `json:"locale_preferred,omitempty"`
 	NameType        string `json:"name_type,omitempty"`
 	Checksum        string `json:"checksum,omitempty"`
 }
