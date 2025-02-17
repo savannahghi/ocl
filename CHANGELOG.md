@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.6](https://github.com/savannahghi/ocl/compare/v1.0.5...v1.0.6) (2025-02-17)
+
+
+### Bug Fixes
+
+* check for the status code when making a request ([#13](https://github.com/savannahghi/ocl/issues/13)) ([4e09e5f](https://github.com/savannahghi/ocl/commit/4e09e5f3e8fc370b94257be0de0d3356b8312f66))
+
 ## [1.0.4](https://github.com/savannahghi/ocl/compare/v1.0.3...v1.0.4) (2025-01-27)
 
 
