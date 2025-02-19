@@ -108,7 +108,18 @@ func (c *Client) makeRequest(
 			return err
 		}
 
-		return fmt.Errorf("failed (HTTP %d): %s", resp.StatusCode, string(body))
+		apiErr := APIErrorResponse{}
+
+		err = json.Unmarshal(body, &apiErr)
+		if err != nil {
+			return fmt.Errorf("failed (HTTP %d): %s", resp.StatusCode, string(body))
+		}
+
+		return &APIError{
+			StatusCode: resp.StatusCode,
+			RawBody:    string(body),
+			APIError:   apiErr,
+		}
 	}
 
 	if result != nil {
