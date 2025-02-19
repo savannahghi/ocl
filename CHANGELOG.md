@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.7](https://github.com/savannahghi/ocl/compare/v1.0.6...v1.0.7) (2025-02-19)
+
+
+### Bug Fixes
+
+* check for duplicate concept ID error ([#15](https://github.com/savannahghi/ocl/issues/15)) ([8813600](https://github.com/savannahghi/ocl/commit/8813600833af27100f5f4727e46eed4b0a69105f))
+
 ## [1.0.6](https://github.com/savannahghi/ocl/compare/v1.0.5...v1.0.6) (2025-02-17)
 
 
