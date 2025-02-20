@@ -7,10 +7,6 @@ import (
 	"time"
 )
 
-const (
-	defaultTimeout = 10 * time.Second
-)
-
 type Client struct {
 	baseURL string
 	token   string
@@ -44,9 +40,7 @@ func NewClient(baseURL string, token string, options ...ClientOption) (*Client, 
 	}
 
 	client := &Client{
-		HTTP: &http.Client{
-			Timeout: defaultTimeout,
-		},
+		HTTP:    &http.Client{},
 		baseURL: baseURL,
 		token:   token,
 	}
