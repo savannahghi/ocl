@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.8](https://github.com/savannahghi/ocl/compare/v1.0.7...v1.0.8) (2025-02-20)
+
+
+### Bug Fixes
+
+* remove timeout option ([#17](https://github.com/savannahghi/ocl/issues/17)) ([cda049e](https://github.com/savannahghi/ocl/commit/cda049e3cfaadd3fbbf92a3f3f65b631994c6f99))
+
 ## [1.0.7](https://github.com/savannahghi/ocl/compare/v1.0.6...v1.0.7) (2025-02-19)
 
 
