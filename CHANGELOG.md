@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/savannahghi/ocl/compare/v1.0.8...v1.1.0) (2025-02-26)
+
+
+### Features
+
+* add endpoint to create collections ([#19](https://github.com/savannahghi/ocl/issues/19)) ([6b841e1](https://github.com/savannahghi/ocl/commit/6b841e175cbe2eeaaf98aad39edb9f5f0e2867d9))
+
 ## [1.0.8](https://github.com/savannahghi/ocl/compare/v1.0.7...v1.0.8) (2025-02-20)
 
 
