@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/savannahghi/ocl/compare/v1.1.0...v1.1.1) (2025-02-26)
+
+
+### Bug Fixes
+
+* add duplicate collection ID error ([#21](https://github.com/savannahghi/ocl/issues/21)) ([74f2aea](https://github.com/savannahghi/ocl/commit/74f2aeac48fc1dd277bd0f2238da00750ffdce85))
+
 ## [1.1.0](https://github.com/savannahghi/ocl/compare/v1.0.8...v1.1.0) (2025-02-26)
 
 
