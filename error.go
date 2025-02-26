@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"slices"
 )
 
 // APIErrorResponse represents the structure that an error message will be returned with.
@@ -27,10 +28,22 @@ func IsDuplicateConceptIDError(err error) bool {
 	var apiErr *APIError
 	if errors.As(err, &apiErr) {
 		if apiErr.StatusCode == http.StatusBadRequest {
-			for _, msg := range apiErr.APIError.All {
-				if msg == "Concept ID must be unique within a source." {
-					return true
-				}
+			if slices.Contains(apiErr.APIError.All, "Concept ID must be unique within a source.") {
+				return true
+			}
+		}
+	}
+
+	return false
+}
+
+// IsDuplicateCollectionIDError checks if an error is due to a duplicate Collection ID within a source.
+func IsDuplicateCollectionIDError(err error) bool {
+	var apiErr *APIError
+	if errors.As(err, &apiErr) {
+		if apiErr.StatusCode == http.StatusBadRequest {
+			if slices.Contains(apiErr.APIError.All, "Constraint “org_collection_unique” is violated.") {
+				return true
 			}
 		}
 	}
