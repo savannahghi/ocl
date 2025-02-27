@@ -135,9 +135,10 @@ func (c *Client) makeRequest(
 // with Organisations and sources e.g You can have WHO as an org, and many sources within that
 // org e.g ICD-10, ICD-11.
 //
-// The idea is that the client should send the source and org as headers so that the library will
+// The idea is that the client should send the source, org, collection as headers so that the library will
 // correctly create the API URL.
 type Headers struct {
 	Organisation string `json:"organisation,omitempty"`
 	Source       string `json:"source,omitempty"`
+	Collection   string `json:"collection,omitempty"`
 }
