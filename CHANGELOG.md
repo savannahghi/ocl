@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/savannahghi/ocl/compare/v1.2.0...v1.2.1) (2025-02-28)
+
+
+### Bug Fixes
+
+* collection reference and versions API calls ([#25](https://github.com/savannahghi/ocl/issues/25)) ([773e06d](https://github.com/savannahghi/ocl/commit/773e06d14d00fca5d54d73ece358ce3ddca3ffa8))
+
 ## [1.2.0](https://github.com/savannahghi/ocl/compare/v1.1.1...v1.2.0) (2025-02-28)
 
 
