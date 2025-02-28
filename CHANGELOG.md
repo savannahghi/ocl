@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/savannahghi/ocl/compare/v1.1.1...v1.2.0) (2025-02-28)
+
+
+### Features
+
+* add endpoint to create collection version and collection references ([#23](https://github.com/savannahghi/ocl/issues/23)) ([eefa68f](https://github.com/savannahghi/ocl/commit/eefa68f23484178581d8f877c5603c6f6c8eb0b4))
+
 ## [1.1.1](https://github.com/savannahghi/ocl/compare/v1.1.0...v1.1.1) (2025-02-26)
 
 
