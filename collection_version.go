@@ -25,11 +25,11 @@ type CollectionVersion struct {
 }
 
 func (c *Client) CreateCollectionVersion(
-	ctx context.Context, collection *Collection, headers *Headers,
-) (*Collection, error) {
-	var resp *Collection
+	ctx context.Context, collectionVersion *CollectionVersion, headers *Headers,
+) (*CollectionVersion, error) {
+	var resp *CollectionVersion
 
-	err := c.makeRequest(ctx, http.MethodPost, composeCollectionVersionsURL(headers), nil, collection, &resp)
+	err := c.makeRequest(ctx, http.MethodPost, composeCollectionVersionsURL(headers), nil, collectionVersion, &resp)
 	if err != nil {
 		return nil, err
 	}
