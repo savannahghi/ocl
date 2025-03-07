@@ -72,10 +72,27 @@ func (c *Client) CreateConcept(ctx context.Context, concept *Concept, headers *H
 	return &resp, nil
 }
 
+func (c *Client) UpdateConcept(ctx context.Context, concept *Concept, headers *Headers) (*Concept, error) {
+	var resp Concept
+
+	err := c.makeRequest(ctx, http.MethodPut, composeConceptURL(headers), nil, concept, &resp)
+	if err != nil {
+		return nil, err
+	}
+
+	return &resp, nil
+}
+
 // composeConceptsURL forms the create/get concepts url. It follows this path
 // /orgs/{org}/sources/{source}/concepts/.
 func composeConceptsURL(headers *Headers) string {
 	return composeOrgSourcePath(headers) + "/concepts/"
+}
+
+// composeConceptURL forms the get detail/update concepts url. It follows this path
+// /orgs/{org}/sources/{source}/concepts/{concept_id}.
+func composeConceptURL(headers *Headers) string {
+	return composeOrgSourcePath(headers) + "/concepts/" + headers.ConceptID
 }
 
 // composeOrgSourcePath creates a url path with the org & source set. This is because most of the
