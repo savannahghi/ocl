@@ -33,6 +33,8 @@ type Collection struct {
 	CreatedBy        string    `json:"created_by,omitempty"`
 	UpdatedOn        time.Time `json:"updated_on,omitempty"`
 	UpdatedBy        string    `json:"updated_by,omitempty"`
+	Released         bool      `json:"released,omitempty"`
+	CanonicalURL     string    `json:"canonical_url,omitempty"`
 }
 
 type Extras struct{}
