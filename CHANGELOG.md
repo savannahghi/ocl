@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/savannahghi/ocl/compare/v1.3.0...v1.3.1) (2025-05-06)
+
+
+### Bug Fixes
+
+* add more fields to the collection struct ([#30](https://github.com/savannahghi/ocl/issues/30)) ([2361546](https://github.com/savannahghi/ocl/commit/23615462a1543d9ce391dfea2c48ef06df35e4c7))
+
 ## [1.3.0](https://github.com/savannahghi/ocl/compare/v1.2.1...v1.3.0) (2025-05-06)
 
 
