@@ -16,7 +16,7 @@ type Collection struct {
 	FullName         string    `json:"full_name,omitempty"`
 	CollectionType   string    `json:"collection_type,omitempty"`
 	PublicAccess     string    `json:"public_access,omitempty"`
-	SupportedLocales string    `json:"supported_locales,omitempty"`
+	SupportedLocales []string  `json:"supported_locales,omitempty"`
 	Website          string    `json:"website,omitempty"`
 	Description      string    `json:"description,omitempty"`
 	PreferredSource  string    `json:"preferred_source,omitempty"`
