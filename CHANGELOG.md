@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.3.0](https://github.com/savannahghi/ocl/compare/v1.2.1...v1.3.0) (2025-05-06)
+
+
+### Features
+
+* Add support for concept update ([#27](https://github.com/savannahghi/ocl/issues/27)) ([002ab02](https://github.com/savannahghi/ocl/commit/002ab02938bd31c2d616e64e84976d57bdd9cb91))
+
+
+### Bug Fixes
+
+* change supported locale type ([#29](https://github.com/savannahghi/ocl/issues/29)) ([d4be711](https://github.com/savannahghi/ocl/commit/d4be7113c5f2efcc504a59718d3247c38c2c4477))
+
 ## [1.2.1](https://github.com/savannahghi/ocl/compare/v1.2.0...v1.2.1) (2025-02-28)
 
 
