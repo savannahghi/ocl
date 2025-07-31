@@ -17,7 +17,7 @@ jobs:
       max-parallel: 3
       fail-fast: false
       matrix:
-        goVer: ['1.21', '1.22']
+        goVer: ['1.24']
     steps:
       - uses: actions/checkout@v4
 

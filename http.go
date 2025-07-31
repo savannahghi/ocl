@@ -87,6 +87,7 @@ func (c *Client) readResponse(response *http.Response, result interface{}) error
 func (c *Client) makeRequest(
 	ctx context.Context,
 	method, path string,
+	//nolint:unparam
 	params url.Values,
 	data, result interface{},
 ) error {
