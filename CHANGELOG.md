@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/savannahghi/ocl/compare/v1.4.0...v1.5.0) (2025-07-31)
+
+
+### Features
+
+* new organization ([#34](https://github.com/savannahghi/ocl/issues/34)) ([1df1c84](https://github.com/savannahghi/ocl/commit/1df1c8448469c207a4a87d2d8dbb61d55f3d1f89))
+
 ## [1.4.0](https://github.com/savannahghi/ocl/compare/v1.3.1...v1.4.0) (2025-05-08)
 
 
