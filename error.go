@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"slices"
+	"strings"
 )
 
 // APIErrorResponse represents the structure that an error message will be returned with.
@@ -16,6 +17,7 @@ type APIErrorResponse struct {
 type APIError struct {
 	StatusCode int
 	RawBody    string
+	Mnemonic   string `json:"mnemonic"`
 	APIError   APIErrorResponse
 }
 
@@ -48,5 +50,15 @@ func IsDuplicateCollectionIDError(err error) bool {
 		}
 	}
 
+	return false
+}
+
+func IsDuplicateMnemonicError(err error) bool {
+	var apiErr *APIError
+	if errors.As(err, &apiErr) {
+		if apiErr.StatusCode == http.StatusBadRequest {
+			return strings.Contains(apiErr.Mnemonic, "already exists")
+		}
+	}
 	return false
 }
