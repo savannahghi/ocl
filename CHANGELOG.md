@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.2](https://github.com/savannahghi/ocl/compare/v1.5.1...v1.5.2) (2025-08-01)
+
+
+### Bug Fixes
+
+* return true if org already exists ([#38](https://github.com/savannahghi/ocl/issues/38)) ([dae3bb1](https://github.com/savannahghi/ocl/commit/dae3bb15e593f6b1c61310b2fe220f76c816c69e))
+
 ## [1.5.1](https://github.com/savannahghi/ocl/compare/v1.5.0...v1.5.1) (2025-08-01)
 
 
