@@ -57,7 +57,9 @@ func IsDuplicateMnemonicError(err error) bool {
 	var apiErr *APIError
 	if errors.As(err, &apiErr) {
 		if apiErr.StatusCode == http.StatusBadRequest {
-			return strings.Contains(apiErr.Mnemonic, "already exists")
+			if strings.Contains(apiErr.Mnemonic, "already exists") {
+				return true
+			}
 		}
 	}
 	return false
