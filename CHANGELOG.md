@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/savannahghi/ocl/compare/v1.5.0...v1.5.1) (2025-08-01)
+
+
+### Bug Fixes
+
+* organization exist error method ([#36](https://github.com/savannahghi/ocl/issues/36)) ([a1088e3](https://github.com/savannahghi/ocl/commit/a1088e3ce04bfd8f738c91f4587371c9e3f4546a))
+
 ## [1.5.0](https://github.com/savannahghi/ocl/compare/v1.4.0...v1.5.0) (2025-07-31)
 
 
