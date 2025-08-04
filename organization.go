@@ -51,7 +51,7 @@ type OrganizationOutput struct {
 }
 
 // CreateOrganization is used to create an organization
-func (c *Client) CreateOrganization(ctx context.Context, organization SimpleOrganizationInput, headers *Headers) (*OrganizationOutput, error) {
+func (c *Client) CreateOrganization(ctx context.Context, organization SimpleOrganizationInput) (*OrganizationOutput, error) {
 	if err := ValidateStruct(organization); err != nil {
 		return nil, fmt.Errorf("invalid organization payload: %w", err)
 	}
@@ -59,6 +59,23 @@ func (c *Client) CreateOrganization(ctx context.Context, organization SimpleOrga
 	var output OrganizationOutput
 
 	err := c.makeRequest(ctx, http.MethodPost, "orgs/", nil, organization, &output)
+	if err != nil {
+		return nil, err
+	}
+
+	return &output, nil
+}
+
+func (c *Client) UpdateOrganization(ctx context.Context, organization SimpleOrganizationInput) (*OrganizationOutput, error) {
+	if organization.ID == "" {
+		return nil, fmt.Errorf("organization ID cannot be null")
+	}
+
+	var output OrganizationOutput
+
+	updatePath := fmt.Sprintf("orgs/%s", organization.ID)
+
+	err := c.makeRequest(ctx, http.MethodPut, updatePath, nil, organization, &output)
 	if err != nil {
 		return nil, err
 	}
