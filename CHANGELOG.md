@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/savannahghi/ocl/compare/v1.6.0...v1.6.1) (2025-08-05)
+
+
+### Bug Fixes
+
+* recreate request body for http/2 retries ([#42](https://github.com/savannahghi/ocl/issues/42)) ([3359bb7](https://github.com/savannahghi/ocl/commit/3359bb742c87299ae4972dbec9fbeffeac24085a))
+
 ## [1.6.0](https://github.com/savannahghi/ocl/compare/v1.5.2...v1.6.0) (2025-08-04)
 
 
