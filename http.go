@@ -32,17 +32,33 @@ func (c *Client) newRequest(
 	switch payload := data.(type) {
 	case nil:
 		request.Body = nil
+
 	case io.ReadCloser:
 		request.Body = payload
+
 	case io.Reader:
 		request.Body = io.NopCloser(payload)
+
 	default:
 		b, err := json.Marshal(data)
 		if err != nil {
 			return nil, err
 		}
 
-		request.Body = io.NopCloser(bytes.NewReader(b))
+		reader := bytes.NewReader(b)
+		request.Body = io.NopCloser(reader)
+
+		// This code is here to thwart an error:
+		//
+		// "http2: Transport: cannot retry err [http2: Transport received Server's graceful shutdown GOAWAY]
+		// after Request.Body was written; define Request.GetBody to avoid this error"
+		//
+		// This snippet defines how to recreate the request body if it needs to be resent (e.g., on retry(ies)).
+		// Inside this function, we create a fresh bytes.NewReader(b) (so the read offset is reset).
+		// Then we again wrap it in io.NopCloser, as required by http.Request.
+		request.GetBody = func() (io.ReadCloser, error) {
+			return io.NopCloser(bytes.NewReader(b)), nil
+		}
 	}
 
 	return request, nil
