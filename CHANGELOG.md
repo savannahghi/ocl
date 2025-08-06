@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.3](https://github.com/savannahghi/ocl/compare/v1.6.2...v1.6.3) (2025-08-06)
+
+
+### Bug Fixes
+
+* update create source endpoint path ([#46](https://github.com/savannahghi/ocl/issues/46)) ([877ff30](https://github.com/savannahghi/ocl/commit/877ff304f80c4510caa1a96f928c8d37a63d37a0))
+
 ## [1.6.2](https://github.com/savannahghi/ocl/compare/v1.6.1...v1.6.2) (2025-08-06)
 
 
