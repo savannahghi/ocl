@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.2](https://github.com/savannahghi/ocl/compare/v1.6.1...v1.6.2) (2025-08-06)
+
+
+### Bug Fixes
+
+* update duplicate org error ([#44](https://github.com/savannahghi/ocl/issues/44)) ([cfe3406](https://github.com/savannahghi/ocl/commit/cfe340633e6f754b4d7217dc69ca9f425fbe0929))
+
 ## [1.6.1](https://github.com/savannahghi/ocl/compare/v1.6.0...v1.6.1) (2025-08-05)
 
 
