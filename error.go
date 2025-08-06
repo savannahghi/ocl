@@ -55,12 +55,38 @@ func IsDuplicateCollectionIDError(err error) bool {
 
 func IsDuplicateMnemonicError(err error) bool {
 	var apiErr *APIError
-	if errors.As(err, &apiErr) {
-		if apiErr.StatusCode == http.StatusBadRequest {
-			if strings.Contains(apiErr.Mnemonic, "already exists") {
-				return true
-			}
+	if !errors.As(err, &apiErr) {
+		return false
+	}
+
+	hasDupWords := func(s string) bool {
+		s = strings.ToLower(strings.TrimSpace(s))
+		if s == "" {
+			return false
+		}
+		if strings.Contains(s, "mnemonic") &&
+			(strings.Contains(s, "already exists") ||
+				strings.Contains(s, "must be unique") ||
+				strings.Contains(s, "unique")) {
+			return true
+		}
+
+		return false
+	}
+
+	if hasDupWords(apiErr.Mnemonic) {
+		return true
+	}
+
+	for _, m := range apiErr.APIError.All {
+		if hasDupWords(m) {
+			return true
 		}
 	}
+
+	if hasDupWords(apiErr.RawBody) {
+		return true
+	}
+
 	return false
 }
