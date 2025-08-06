@@ -2,6 +2,7 @@ package ocl
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"time"
 )
@@ -56,7 +57,9 @@ type Source struct {
 func (c *Client) CreateSource(ctx context.Context, source *Source) (*Source, error) {
 	var resp Source
 
-	err := c.makeRequest(ctx, http.MethodPost, "orgs/", nil, source, &resp)
+	createPath := fmt.Sprintf("orgs/%s/sources", source.Owner)
+
+	err := c.makeRequest(ctx, http.MethodPost, createPath, nil, source, &resp)
 	if err != nil {
 		return nil, err
 	}
