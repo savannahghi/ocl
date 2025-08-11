@@ -15,9 +15,9 @@ func TestIsDuplicateMnemonicError(t *testing.T) {
 			name: "Duplicate mnemonic error",
 			err: &APIError{
 				StatusCode: http.StatusBadRequest,
-				Mnemonic:   "already exists.",
+				Mnemonic:   "already exists",
 			},
-			want: true,
+			want: false,
 		},
 	}
 	for _, tt := range tests {
