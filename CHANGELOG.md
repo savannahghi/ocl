@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/savannahghi/ocl/compare/v1.6.3...v1.7.0) (2025-08-11)
+
+
+### Features
+
+* create mappings ([#48](https://github.com/savannahghi/ocl/issues/48)) ([7647d8a](https://github.com/savannahghi/ocl/commit/7647d8a1ee7fcbff127c654b433e29c300973612))
+
 ## [1.6.3](https://github.com/savannahghi/ocl/compare/v1.6.2...v1.6.3) (2025-08-06)
 
 
