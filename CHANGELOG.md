@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.1](https://github.com/savannahghi/ocl/compare/v1.7.0...v1.7.1) (2025-08-12)
+
+
+### Bug Fixes
+
+* compose mapping path ([#50](https://github.com/savannahghi/ocl/issues/50)) ([cbb44a4](https://github.com/savannahghi/ocl/commit/cbb44a4551b54985809a758105332ceb86411bd1))
+
 ## [1.7.0](https://github.com/savannahghi/ocl/compare/v1.6.3...v1.7.0) (2025-08-11)
 
 
