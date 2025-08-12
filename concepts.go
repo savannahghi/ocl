@@ -101,3 +101,10 @@ func composeConceptURL(headers *Headers) string {
 func composeOrgSourcePath(headers *Headers) string {
 	return "orgs/" + headers.Organisation + "/sources/" + headers.Source
 }
+
+// composeOrgSourcePath creates a url path with the org & source set. This is because most of the
+// APIs in OCL are namespaced to the source and organisation. It will follow this structure
+// /orgs/{org}/sources/{source}/mappings.
+func composeMappingsPath(headers *Headers) string {
+	return "orgs/" + headers.Organisation + "/sources/" + headers.Source + "/mappings/"
+}
