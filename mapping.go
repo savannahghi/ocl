@@ -82,7 +82,7 @@ func (m *MappingsInput) ConstructToConceptURL(organization, source, conceptID st
 func (c *Client) CreateMappings(ctx context.Context, mappings *MappingsInput, headers *Headers) (*Mappings, error) {
 	var resp Mappings
 
-	err := c.makeRequest(ctx, http.MethodPost, composeConceptsURL(headers), nil, mappings, &resp)
+	err := c.makeRequest(ctx, http.MethodPost, composeMappingsPath(headers), nil, mappings, &resp)
 	if err != nil {
 		return nil, err
 	}
