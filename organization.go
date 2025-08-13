@@ -17,6 +17,9 @@ type SimpleOrganizationInput struct {
 	Company      string `json:"company" validate:"required"`
 	Website      string `json:"website" validate:"required"`
 	Location     string `json:"location,omitempty"`
+	Extras       any    `json:"extras,omitempty"`
+	Description  string `json:"description,omitempty"`
+	Text         string `json:"text,omitempty"`
 }
 
 var validate = validator.New()
@@ -73,9 +76,26 @@ func (c *Client) UpdateOrganization(ctx context.Context, organization SimpleOrga
 
 	var output OrganizationOutput
 
-	updatePath := fmt.Sprintf("orgs/%s", organization.ID)
+	updatePath := fmt.Sprintf("orgs/%s/", organization.ID)
 
 	err := c.makeRequest(ctx, http.MethodPut, updatePath, nil, organization, &output)
+	if err != nil {
+		return nil, err
+	}
+
+	return &output, nil
+}
+
+func (c *Client) GetOrganization(ctx context.Context, organizationID string) (*OrganizationOutput, error) {
+	if organizationID == "" {
+		return nil, fmt.Errorf("organization ID cannot be null")
+	}
+
+	var output OrganizationOutput
+
+	orgPath := fmt.Sprintf("orgs/%s/", organizationID)
+
+	err := c.makeRequest(ctx, http.MethodGet, orgPath, nil, nil, &output)
 	if err != nil {
 		return nil, err
 	}
