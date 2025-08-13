@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.1](https://github.com/savannahghi/ocl/compare/v1.8.0...v1.8.1) (2025-08-13)
+
+
+### Bug Fixes
+
+* return a list of sources after creating one ([#56](https://github.com/savannahghi/ocl/issues/56)) ([da982e6](https://github.com/savannahghi/ocl/commit/da982e65f23cc0d06183a07772b03d0b4fe8470d))
+
 ## [1.8.0](https://github.com/savannahghi/ocl/compare/v1.7.2...v1.8.0) (2025-08-13)
 
 
