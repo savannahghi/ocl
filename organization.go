@@ -102,3 +102,18 @@ func (c *Client) GetOrganization(ctx context.Context, organizationID string) (*O
 
 	return &output, nil
 }
+
+func (c *Client) DeleteOrganization(ctx context.Context, organizationID string) error {
+	if organizationID == "" {
+		return fmt.Errorf("organization ID cannot be null")
+	}
+
+	orgPath := fmt.Sprintf("orgs/%s/", organizationID)
+
+	err := c.makeRequest(ctx, http.MethodDelete, orgPath, nil, nil, nil)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
