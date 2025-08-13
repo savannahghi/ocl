@@ -54,8 +54,8 @@ type Source struct {
 	Meta                   any       `json:"meta,omitempty"`
 }
 
-func (c *Client) CreateSource(ctx context.Context, source *Source) (*Source, error) {
-	var resp Source
+func (c *Client) CreateSource(ctx context.Context, source *Source) ([]*Source, error) {
+	var resp []*Source
 
 	createPath := fmt.Sprintf("orgs/%s/sources", source.Owner)
 
@@ -64,5 +64,5 @@ func (c *Client) CreateSource(ctx context.Context, source *Source) (*Source, err
 		return nil, err
 	}
 
-	return &resp, nil
+	return resp, nil
 }
