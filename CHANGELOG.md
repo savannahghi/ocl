@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.2](https://github.com/savannahghi/ocl/compare/v1.7.1...v1.7.2) (2025-08-13)
+
+
+### Bug Fixes
+
+* org update path ([#52](https://github.com/savannahghi/ocl/issues/52)) ([5898722](https://github.com/savannahghi/ocl/commit/5898722c444843aeb8eff27519666f880be1fc08))
+
 ## [1.7.1](https://github.com/savannahghi/ocl/compare/v1.7.0...v1.7.1) (2025-08-12)
 
 
