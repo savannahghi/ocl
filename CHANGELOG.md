@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://github.com/savannahghi/ocl/compare/v1.7.2...v1.8.0) (2025-08-13)
+
+
+### Features
+
+* delete organization ([#54](https://github.com/savannahghi/ocl/issues/54)) ([561c7c2](https://github.com/savannahghi/ocl/commit/561c7c2fb93ef9a5785308bf4f4b04ceded20186))
+
 ## [1.7.2](https://github.com/savannahghi/ocl/compare/v1.7.1...v1.7.2) (2025-08-13)
 
 
