@@ -54,12 +54,44 @@ type Source struct {
 	Meta                   any       `json:"meta,omitempty"`
 }
 
-func (c *Client) CreateSource(ctx context.Context, source *Source) ([]*Source, error) {
-	var resp []*Source
+func (c *Client) CreateSource(ctx context.Context, source *Source) (*Source, error) {
+	var resp Source
 
-	createPath := fmt.Sprintf("orgs/%s/sources", source.Owner)
+	createPath := fmt.Sprintf("orgs/%s/sources/", source.Owner)
 
 	err := c.makeRequest(ctx, http.MethodPost, createPath, nil, source, &resp)
+	if err != nil {
+		return nil, err
+	}
+
+	return &resp, nil
+}
+
+func (c *Client) DeleteOrganizationSource(ctx context.Context, organizationID, sourceID string) error {
+	if organizationID == "" || sourceID == "" {
+		return fmt.Errorf("organization or Source ID cannot be null")
+	}
+
+	orgPath := fmt.Sprintf("orgs/%s/sources/%s/", organizationID, sourceID)
+
+	err := c.makeRequest(ctx, http.MethodDelete, orgPath, nil, nil, nil)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (c *Client) UpdateOrganizationSource(ctx context.Context, organizationID, sourceID string) (*Source, error) {
+	if organizationID == "" || sourceID == "" {
+		return nil, fmt.Errorf("organization or Source ID cannot be null")
+	}
+
+	var resp *Source
+
+	orgPath := fmt.Sprintf("orgs/%s/sources/%s/", organizationID, sourceID)
+
+	err := c.makeRequest(ctx, http.MethodPost, orgPath, nil, nil, &resp)
 	if err != nil {
 		return nil, err
 	}
