@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.0](https://github.com/savannahghi/ocl/compare/v1.8.1...v1.9.0) (2025-08-14)
+
+
+### Features
+
+* delete organization source ([#58](https://github.com/savannahghi/ocl/issues/58)) ([234c436](https://github.com/savannahghi/ocl/commit/234c4360fcc05bba109d1d16ae84e1b86678b203))
+
 ## [1.8.1](https://github.com/savannahghi/ocl/compare/v1.8.0...v1.8.1) (2025-08-13)
 
 
