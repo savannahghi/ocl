@@ -9,25 +9,6 @@ import (
 	"github.com/go-playground/validator"
 )
 
-// SimpleOrganizationInput is a simple model used to create an Organization in advantage.
-type SimpleOrganizationInput struct {
-	ID           string `json:"id" validate:"required"`
-	PublicAccess string `json:"public_access" validate:"required"`
-	Name         string `json:"name" validate:"required"`
-	Company      string `json:"company" validate:"required"`
-	Website      string `json:"website" validate:"required"`
-	Location     string `json:"location,omitempty"`
-	Extras       any    `json:"extras,omitempty"`
-	Description  string `json:"description,omitempty"`
-	Text         string `json:"text,omitempty"`
-}
-
-var validate = validator.New()
-
-func ValidateStruct(input interface{}) error {
-	return validate.Struct(input)
-}
-
 type OrganizationOutput struct {
 	Type              string    `json:"type,omitempty"`
 	UUID              string    `json:"uuid,omitempty"`
@@ -51,6 +32,25 @@ type OrganizationOutput struct {
 	LogoURL           any       `json:"logo_url,omitempty"`
 	Description       any       `json:"description,omitempty"`
 	Text              any       `json:"text,omitempty"`
+}
+
+// SimpleOrganizationInput is a simple model used to create an Organization in advantage.
+type SimpleOrganizationInput struct {
+	ID           string `json:"id" validate:"required"`
+	PublicAccess string `json:"public_access" validate:"required"`
+	Name         string `json:"name" validate:"required"`
+	Company      string `json:"company" validate:"required"`
+	Website      string `json:"website" validate:"required"`
+	Location     string `json:"location,omitempty"`
+	Extras       any    `json:"extras,omitempty"`
+	Description  string `json:"description,omitempty"`
+	Text         string `json:"text,omitempty"`
+}
+
+var validate = validator.New()
+
+func ValidateStruct(input interface{}) error {
+	return validate.Struct(input)
 }
 
 // CreateOrganization is used to create an organization

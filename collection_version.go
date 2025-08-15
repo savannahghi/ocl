@@ -3,26 +3,7 @@ package ocl
 import (
 	"context"
 	"net/http"
-	"time"
 )
-
-type CollectionVersion struct {
-	Type               string     `json:"type,omitempty"`
-	ID                 string     `json:"id,omitempty"`
-	ExternalID         string     `json:"external_id,omitempty"`
-	Released           string     `json:"released,omitempty"`
-	Description        string     `json:"description,omitempty"`
-	URL                string     `json:"url,omitempty"`
-	CollectionURL      string     `json:"collection_url,omitempty"`
-	PreviousVersionURL string     `json:"previous_version_url,omitempty"`
-	RootVersionURL     string     `json:"root_version_url,omitempty"`
-	Extras             Extras     `json:"extras,omitempty"`
-	CreatedOn          time.Time  `json:"created_on,omitempty"`
-	CreatedBy          string     `json:"created_by,omitempty"`
-	UpdatedOn          time.Time  `json:"updated_on,omitempty"`
-	UpdatedBy          string     `json:"updated_by,omitempty"`
-	Collection         Collection `json:"collection,omitempty"`
-}
 
 func (c *Client) CreateCollectionVersion(
 	ctx context.Context, collectionVersion *CollectionVersion, headers *Headers,

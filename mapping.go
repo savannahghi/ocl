@@ -56,15 +56,15 @@ type Mappings struct {
 	PublicCanView           bool      `json:"public_can_view,omitempty"`
 }
 
-type Checksums struct {
-	Standard string `json:"standard,omitempty"`
-	Smart    string `json:"smart,omitempty"`
-}
-
 type MappingsInput struct {
 	FromConceptURL string `json:"from_concept_url" validate:"required"`
 	MapType        string `json:"map_type" validate:"required"`
 	ToConceptURL   string `json:"to_concept_url" validate:"required"`
+}
+
+type Checksums struct {
+	Standard string `json:"standard,omitempty"`
+	Smart    string `json:"smart,omitempty"`
 }
 
 func (m *MappingsInput) constructConceptURL(organization, source, conceptID string) string {
