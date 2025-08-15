@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.0](https://github.com/savannahghi/ocl/compare/v1.9.0...v1.10.0) (2025-08-15)
+
+
+### Features
+
+* implemented collection delete and update features ([#60](https://github.com/savannahghi/ocl/issues/60)) ([60501e7](https://github.com/savannahghi/ocl/commit/60501e74eaf51bdd0a14476c9c4b3e29ac1d7698))
+
 ## [1.9.0](https://github.com/savannahghi/ocl/compare/v1.8.1...v1.9.0) (2025-08-14)
 
 
