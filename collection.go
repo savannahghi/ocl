@@ -74,7 +74,7 @@ type CollectionVersion struct {
 func (c *Client) CreateCollection(ctx context.Context, collection *Collection, headers *Headers) (*Collection, error) {
 	var resp Collection
 
-	path := fmt.Sprintf("orgs/%s/collections", headers.Organisation)
+	path := fmt.Sprintf("orgs/%s/collections/", headers.Organisation)
 	err := c.makeRequest(ctx, http.MethodPost, path, nil, collection, &resp)
 	if err != nil {
 		return nil, err
