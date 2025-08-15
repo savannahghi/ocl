@@ -116,7 +116,6 @@ func (c *Client) makeRequest(
 	if err != nil {
 		return err
 	}
-
 	defer resp.Body.Close()
 
 	if resp.StatusCode < 200 || resp.StatusCode >= 300 {

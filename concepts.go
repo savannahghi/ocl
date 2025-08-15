@@ -6,8 +6,6 @@ import (
 	"time"
 )
 
-// Concept is a unit of meaning that can represent a clinical idea e.g a disease, symptom, medication etc.
-// Each concept is uniquely identified within the system and has different attributes attached to it.
 type Concept struct {
 	UUID                string                 `json:"uuid,omitempty"`
 	Extras              map[string]interface{} `json:"extras,omitempty"`
@@ -60,6 +58,9 @@ type Descriptions struct {
 	DescriptionType string `json:"description_type,omitempty"`
 	Checksum        string `json:"checksum,omitempty"`
 }
+
+// Concept is a unit of meaning that can represent a clinical idea e.g a disease, symptom, medication etc.
+// Each concept is uniquely identified within the system and has different attributes attached to it.
 
 func (c *Client) CreateConcept(ctx context.Context, concept *Concept, headers *Headers) (*Concept, error) {
 	var resp Concept

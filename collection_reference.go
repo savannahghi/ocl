@@ -10,7 +10,6 @@ type CollectionReference struct {
 		Expressions []string `json:"expressions"`
 	} `json:"data"`
 }
-
 type CollectionReferenceResponse []struct {
 	Message    string `json:"message"`
 	Added      bool   `json:"added"`
