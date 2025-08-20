@@ -76,7 +76,7 @@ func (c *Client) CreateConcept(ctx context.Context, concept *Concept, headers *H
 func (c *Client) UpdateConcept(ctx context.Context, concept *Concept, headers *Headers) (*Concept, error) {
 	var resp Concept
 
-	err := c.makeRequest(ctx, http.MethodPut, composeConceptURL(headers), nil, concept, &resp)
+	err := c.makeRequest(ctx, http.MethodPost, composeConceptURL(headers), nil, concept, &resp)
 	if err != nil {
 		return nil, err
 	}
