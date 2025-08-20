@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.2](https://github.com/savannahghi/ocl/compare/v1.10.1...v1.10.2) (2025-08-20)
+
+
+### Bug Fixes
+
+* use POST verb to update concept ([#64](https://github.com/savannahghi/ocl/issues/64)) ([6570c4c](https://github.com/savannahghi/ocl/commit/6570c4c4df8942ae750de73a3661ceda7cc6922d))
+
 ## [1.10.1](https://github.com/savannahghi/ocl/compare/v1.10.0...v1.10.1) (2025-08-15)
 
 
