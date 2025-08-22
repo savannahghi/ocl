@@ -53,26 +53,12 @@ type CollectionUpdateInput struct {
 
 type Extras struct{}
 
-type CollectionVersion struct {
-	Type               string     `json:"type,omitempty"`
-	ID                 string     `json:"id,omitempty"`
-	ExternalID         string     `json:"external_id,omitempty"`
-	Released           string     `json:"released,omitempty"`
-	Description        string     `json:"description,omitempty"`
-	URL                string     `json:"url,omitempty"`
-	CollectionURL      string     `json:"collection_url,omitempty"`
-	PreviousVersionURL string     `json:"previous_version_url,omitempty"`
-	RootVersionURL     string     `json:"root_version_url,omitempty"`
-	Extras             Extras     `json:"extras,omitempty"`
-	CreatedOn          time.Time  `json:"created_on,omitempty"`
-	CreatedBy          string     `json:"created_by,omitempty"`
-	UpdatedOn          time.Time  `json:"updated_on,omitempty"`
-	UpdatedBy          string     `json:"updated_by,omitempty"`
-	Collection         Collection `json:"collection,omitempty"`
-}
-
 func (c *Client) CreateCollection(ctx context.Context, collection *Collection, headers *Headers) (*Collection, error) {
 	var resp Collection
+
+	if !isValidInput(&headers.Organisation, nil, nil, nil, CreateCollectionOperation) {
+		return nil, ErrInvalidIdentifierInput
+	}
 
 	path := fmt.Sprintf("orgs/%s/collections/", headers.Organisation)
 	err := c.makeRequest(ctx, http.MethodPost, path, nil, collection, &resp)
@@ -82,8 +68,9 @@ func (c *Client) CreateCollection(ctx context.Context, collection *Collection, h
 	return &resp, nil
 }
 
-func (c *Client) RetireCollection(ctx context.Context, headers *Headers, id string) error {
-	path := fmt.Sprintf("orgs/%s/collections/%s/", headers.Organisation, id)
+func (c *Client) RetireCollection(ctx context.Context, headers *Headers) error {
+
+	path := fmt.Sprintf("orgs/%s/collections/%s/", headers.Organisation, headers.Collection)
 
 	err := c.makeRequest(ctx, http.MethodDelete, path, nil, nil, nil)
 	if err != nil {
@@ -92,17 +79,13 @@ func (c *Client) RetireCollection(ctx context.Context, headers *Headers, id stri
 	return nil
 }
 
-func (c *Client) UpdateCollection(ctx context.Context, input *CollectionUpdateInput, organizationID, collectionID string) (*Collection, error) {
+func (c *Client) UpdateCollection(ctx context.Context, input *CollectionUpdateInput, headers *Headers) (*Collection, error) {
 	var output Collection
 
-	if organizationID == "" {
-		return nil, fmt.Errorf("organization ID cannot be empty")
+	if !isValidInput(&headers.Organisation, nil, &headers.Collection, nil, UpdateCollectionOperation) {
+		return nil, ErrInvalidIdentifierInput
 	}
-	if collectionID == "" {
-		return nil, fmt.Errorf("collection ID cannot be empty")
-	}
-
-	path := fmt.Sprintf("orgs/%s/collections/%s/", organizationID, collectionID)
+	path := fmt.Sprintf("orgs/%s/collections/%s/", headers.Organisation, headers.Collection)
 
 	if err := c.makeRequest(ctx, http.MethodPut, path, nil, input, &output); err != nil {
 		return nil, err
