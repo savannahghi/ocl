@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.0](https://github.com/savannahghi/ocl/compare/v1.10.2...v1.11.0) (2025-08-22)
+
+
+### Features
+
+* implementating versioning of collections and sources on OCL ([#66](https://github.com/savannahghi/ocl/issues/66)) ([85c08c1](https://github.com/savannahghi/ocl/commit/85c08c153239e7408585b53fd6e9f5b3190e5a8f))
+
 ## [1.10.2](https://github.com/savannahghi/ocl/compare/v1.10.1...v1.10.2) (2025-08-20)
 
 
