@@ -54,6 +54,23 @@ type Source struct {
 	Meta                   any       `json:"meta,omitempty"`
 }
 
+type SourceVersion struct {
+	Release         bool   `json:"release,omitempty"`
+	Description     string `json:"description,omitempty"`
+	PreviousVersion string `json:"previous_version,omitempty"`
+	ExternalID      any    `json:"external_id,omitempty"`
+	ParentVersion   string `json:"parent_version,omitempty"`
+}
+
+type CreateSourceVersion struct {
+	VersionID     string `json:"id"`
+	SourceVersion SourceVersion
+}
+
+type EditSourceVersion struct {
+	SourceVersion
+}
+
 func (c *Client) CreateSource(ctx context.Context, source *Source) (*Source, error) {
 	var resp Source
 
@@ -67,12 +84,12 @@ func (c *Client) CreateSource(ctx context.Context, source *Source) (*Source, err
 	return &resp, nil
 }
 
-func (c *Client) DeleteOrganizationSource(ctx context.Context, organizationID, sourceID string) error {
-	if organizationID == "" || sourceID == "" {
-		return fmt.Errorf("organization or Source ID cannot be null")
+func (c *Client) DeleteOrganizationSource(ctx context.Context, headers *Headers) error {
+	if !isValidInput(&headers.Organisation, &headers.Source, nil, nil, DeleteSourceOrgOperation) {
+		return ErrInvalidIdentifierInput
 	}
 
-	orgPath := fmt.Sprintf("orgs/%s/sources/%s/", organizationID, sourceID)
+	orgPath := fmt.Sprintf("orgs/%s/sources/%s/", headers.Organisation, headers.Source)
 
 	err := c.makeRequest(ctx, http.MethodDelete, orgPath, nil, nil, nil)
 	if err != nil {
@@ -83,8 +100,8 @@ func (c *Client) DeleteOrganizationSource(ctx context.Context, organizationID, s
 }
 
 func (c *Client) UpdateOrganizationSource(ctx context.Context, organizationID, sourceID string) (*Source, error) {
-	if organizationID == "" || sourceID == "" {
-		return nil, fmt.Errorf("organization or Source ID cannot be null")
+	if !isValidInput(&organizationID, &sourceID, nil, nil, UpdateSourceOrgOperation) {
+		return nil, fmt.Errorf("invalid input:\n either source or organization ID missing")
 	}
 
 	var resp *Source
