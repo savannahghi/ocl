@@ -55,8 +55,10 @@ type Extras struct{}
 
 func (c *Client) CreateCollection(ctx context.Context, collection *Collection, headers *Headers) (*Collection, error) {
 	var resp Collection
-
-	if !isValidInput(&headers.Organisation, nil, nil, nil, CreateCollectionOperation) {
+	params := RequestParameters{
+		OrganisationID: &headers.Organisation,
+	}
+	if !isValidInput(params, CreateCollectionOperation) {
 		return nil, ErrInvalidIdentifierInput
 	}
 
@@ -81,8 +83,11 @@ func (c *Client) RetireCollection(ctx context.Context, headers *Headers) error {
 
 func (c *Client) UpdateCollection(ctx context.Context, input *CollectionUpdateInput, headers *Headers) (*Collection, error) {
 	var output Collection
-
-	if !isValidInput(&headers.Organisation, nil, &headers.Collection, nil, UpdateCollectionOperation) {
+	params := RequestParameters{
+		OrganisationID: &headers.Organisation,
+		CollectionID:   &headers.Collection,
+	}
+	if !isValidInput(params, UpdateCollectionOperation) {
 		return nil, ErrInvalidIdentifierInput
 	}
 	path := fmt.Sprintf("orgs/%s/collections/%s/", headers.Organisation, headers.Collection)

@@ -11,25 +11,25 @@ import (
 // to create a new collection version in OCL
 //
 // Parameters:
-//   - Organization: the ID of the organization (This is a required field or the operation fails).
-//   - Collection: the ID of the collection (This is a required field or the operation fails).
-//   - CreateVersion: this is the payload containing the fields (This is a required field or the operation fails).
+//   - Headers: Contains organization and collection IDs.
+//   - CollectionVersionInput: this is the payload containing the fields (This is a required field or the operation fails).
 //     to create collection version in OCL.
 //
 // Returns:
-//   - ResourceVersion if the operation succeeds.
+//   - CollectionVersion if the operation succeeds.
 //   - error if the operation fails.
 func (c *Client) CreateCollectionVersion(
-	ctx context.Context, input *CreateVersion, headers *Headers,
-) (*ResourceVersion, error) {
-	var resp *ResourceVersion
-	if !isValidInput(&headers.Organisation, nil, &headers.Collection, nil, CreateCollectionVersionOperation) {
+	ctx context.Context, input *CollectionVersionInput, headers *Headers,
+) (*CollectionVersion, error) {
+	var resp *CollectionVersion
+	params := RequestParameters{
+		OrganisationID: &headers.Organisation,
+		CollectionID:   &headers.Collection,
+	}
+	if !isValidInput(params, CreateCollectionVersionOperation) {
 		return nil, ErrInvalidIdentifierInput
 	}
 
-	if input.Release {
-		return nil, ErrReleaseFailure
-	}
 	path := fmt.Sprintf("orgs/%s/collections/%s/versions/", headers.Organisation, headers.Collection)
 	err := c.makeRequest(ctx, http.MethodPost, path, nil, input, &resp)
 	if err != nil {
@@ -44,20 +44,23 @@ func (c *Client) CreateCollectionVersion(
 // to make a collection version release on OCL
 //
 // Parameters:
-//   - Organization: the ID of the organization (This is a required field or the operation fails).
-//   - Collection: the ID of the collection (This is a required field or the operation fails).
-//   - VersionID: the collection version ID (This is a required field or the operation fails).
+//   - Headers: Contains organization, collection and version IDs.
 //   - ReleaseVersion: this is the payload containing the fields to release the collection version in OCL.
 //
 // Returns:
-//   - ResourceVersion if the operation succeeds.
+//   - CollectionVersion if the operation succeeds.
 //   - error if the operation fails.
-func (c *Client) ReleaseCollectionVersion(ctx context.Context, headers *Headers, input *ReleaseVersion) (*ResourceVersion, error) {
-	if !isValidInput(&headers.Organisation, nil, &headers.Collection, &headers.VersionID, ReleaseCollectionVersionOperation) {
+func (c *Client) ReleaseCollectionVersion(ctx context.Context, headers *Headers, input *ReleaseVersion) (*CollectionVersion, error) {
+	params := RequestParameters{
+		OrganisationID: &headers.Organisation,
+		CollectionID:   &headers.Collection,
+		VersionID:      &headers.VersionID,
+	}
+	if !isValidInput(params, ReleaseCollectionVersionOperation) {
 		return nil, ErrInvalidIdentifierInput
 	}
 
-	var output *ResourceVersion
+	var output *CollectionVersion
 	path := fmt.Sprintf("/orgs/%s/collections/%s/versions/%s/", headers.Organisation, headers.Collection, headers.VersionID)
 	if err := c.makeRequest(ctx, http.MethodPost, path, nil, input, output); err != nil {
 		return nil, err
@@ -70,15 +73,18 @@ func (c *Client) ReleaseCollectionVersion(ctx context.Context, headers *Headers,
 // to retire a collection version in OCL
 //
 // Parameters:
-//   - Organization: the ID of the organization (This is a required field or the operation fails).
-//   - Collection: the ID of the collection (This is a required field or the operation fails).
-//   - VersionID: the collection version ID (This is a required field or the operation fails).
+//   - Headers: Contains organization, collection, and version IDs.
 //
 // Returns:
 //   - error if the operation fails
 //   - no error if operation succeeds
 func (c *Client) RetireCollectionVersion(ctx context.Context, headers *Headers) error {
-	if !isValidInput(&headers.Organisation, nil, &headers.Collection, &headers.VersionID, ReleaseCollectionVersionOperation) {
+	params := RequestParameters{
+		OrganisationID: &headers.Organisation,
+		CollectionID:   &headers.Collection,
+		VersionID:      &headers.VersionID,
+	}
+	if !isValidInput(params, ReleaseCollectionVersionOperation) {
 		return ErrInvalidIdentifierInput
 	}
 	path := fmt.Sprintf("/orgs/%s/collections/%s/versions/%s/", headers.Organisation, headers.Collection, headers.VersionID)
