@@ -17,7 +17,7 @@ type CollectionVersionInput struct {
 	Description  string `json:"description,omitempty"`
 	Release      bool   `json:"release,omitempty"`
 	ExpansionURL string `json:"expansion_url,omitempty"`
-	AutoExapand  bool   `json:"autoexpand,omitempty"`
+	AutoExpand   bool   `json:"autoexpand,omitempty"`
 }
 
 type CollectionVersion struct {
@@ -36,6 +36,7 @@ type CollectionVersion struct {
 	UpdatedOn          time.Time  `json:"updated_on,omitempty"`
 	UpdatedBy          string     `json:"updated_by,omitempty"`
 	Collection         Collection `json:"collection"`
+	AutoExpand         bool       `json:"autoexpand,omitempty"`
 }
 
 type SourceVersionInput struct {

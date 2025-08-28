@@ -39,12 +39,26 @@ func IsDuplicateConceptIDError(err error) bool {
 	return false
 }
 
-// IsDuplicateCollectionIDError checks if an error is due to a duplicate Collection ID within a source.
+// IsDuplicateCollectionIDError checks if an error is due to a duplicate Collection  ID within a source.
 func IsDuplicateCollectionIDError(err error) bool {
 	var apiErr *APIError
 	if errors.As(err, &apiErr) {
 		if apiErr.StatusCode == http.StatusBadRequest {
 			if slices.Contains(apiErr.APIError.All, "Constraint “org_collection_unique” is violated.") {
+				return true
+			}
+		}
+	}
+
+	return false
+}
+
+// IsDuplicateSourceIDError checks if an error is due to a duplicate Source ID within an organization.
+func IsDuplicateSourceIDError(err error) bool {
+	var apiErr *APIError
+	if errors.As(err, &apiErr) {
+		if apiErr.StatusCode == http.StatusBadRequest {
+			if slices.Contains(apiErr.APIError.All, "Constraint “org_source_unique” is violated.") {
 				return true
 			}
 		}
