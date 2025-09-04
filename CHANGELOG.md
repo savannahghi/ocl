@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.12.0](https://github.com/savannahghi/ocl/compare/v1.11.0...v1.12.0) (2025-09-04)
+
+
+### Features
+
+* adding reference to a collection ([#70](https://github.com/savannahghi/ocl/issues/70)) ([876928b](https://github.com/savannahghi/ocl/commit/876928ba393619a427ff5ac2cae9ff1a0dee49b3))
+
 ## [1.11.0](https://github.com/savannahghi/ocl/compare/v1.10.2...v1.11.0) (2025-09-02)
 
 
