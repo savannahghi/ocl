@@ -2,35 +2,38 @@ package ocl
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 )
 
-type CollectionReference struct {
-	Data struct {
-		Expressions []string `json:"expressions"`
-	} `json:"data"`
+type Expression struct {
+	Expression []string `json:"expressions,omitempty"`
 }
-type CollectionReferenceResponse []struct {
-	Message    string `json:"message"`
-	Added      bool   `json:"added"`
-	Expression string `json:"expression"`
+
+type CollectionReference struct {
+	Data Expression `json:"data"`
+}
+
+type CollectionReferenceAsyncResponse []struct {
+	ID       string `json:"id,omitempty"`
+	State    string `json:"state,omitempty"`
+	Name     string `json:"name,omitempty"`
+	Queue    string `json:"queue,omitempty"`
+	Username string `json:"username,omitempty"`
+	Task     string `json:"task,omitempty"`
 }
 
 func (c *Client) CreateCollectionReference(
 	ctx context.Context, collectionRef *CollectionReference, headers *Headers,
-) (*CollectionReferenceResponse, error) {
-	var resp *CollectionReferenceResponse
+) (*CollectionReferenceAsyncResponse, error) {
+	var resp *CollectionReferenceAsyncResponse
 
-	err := c.makeRequest(ctx, http.MethodPut, composeCollectionReferencesURL(headers), nil, collectionRef, &resp)
+	path := fmt.Sprintf("orgs/%s/collections/%s/references/?cascade=sourcetoconcepts&async=true", headers.Organisation, headers.Collection)
+
+	err := c.makeRequest(ctx, http.MethodPut, path, nil, collectionRef, &resp)
 	if err != nil {
 		return nil, err
 	}
 
 	return resp, nil
-}
-
-// composeCollectionVersionsURL forms the create/get collection references url. It follows this path
-// PUT /orgs/:org/collections/:collection/references/.
-func composeCollectionReferencesURL(headers *Headers) string {
-	return "orgs/" + headers.Organisation + "/collections/" + headers.Collection + "/references/"
 }
