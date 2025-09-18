@@ -31,6 +31,7 @@ func (c *Client) CreateCollectionVersion(
 	}
 
 	path := fmt.Sprintf("orgs/%s/collections/%s/versions/", headers.Organisation, headers.Collection)
+
 	err := c.makeRequest(ctx, http.MethodPost, path, nil, input, &resp)
 	if err != nil {
 		return nil, err

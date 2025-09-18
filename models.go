@@ -12,12 +12,11 @@ type ReleaseVersion struct {
 }
 
 type CollectionVersionInput struct {
-	ID           string `json:"id,omitempty"`
-	Released     bool   `json:"released,omitempty"`
-	Description  string `json:"description,omitempty"`
-	Release      bool   `json:"release,omitempty"`
-	ExpansionURL string `json:"expansion_url,omitempty"`
-	AutoExpand   bool   `json:"autoexpand,omitempty"`
+	ID          string `json:"id,omitempty"`
+	Released    bool   `json:"released,omitempty"`
+	Description string `json:"description,omitempty"`
+	ExternalID  string `json:"external_id,omitempty"`
+	Extras      Extras `json:"extras,omitempty"`
 }
 
 type CollectionVersion struct {
@@ -35,8 +34,10 @@ type CollectionVersion struct {
 	CreatedBy          string     `json:"created_by,omitempty"`
 	UpdatedOn          time.Time  `json:"updated_on,omitempty"`
 	UpdatedBy          string     `json:"updated_by,omitempty"`
-	Collection         Collection `json:"collection"`
+	Collection         Collection `json:"collection,omitempty"`
+	ExpansionURL       string     `json:"expansion_url,omitempty"`
 	AutoExpand         bool       `json:"autoexpand,omitempty"`
+	Owner              string     `json:"owner,omitempty"`
 }
 
 type SourceVersionInput struct {
@@ -46,13 +47,13 @@ type SourceVersionInput struct {
 }
 
 type SourceVersion struct {
-	Type               string    `json:"type,omitempty"`
 	ID                 string    `json:"id,omitempty"`
 	ExternalID         string    `json:"external_id,omitempty"`
-	Released           string    `json:"released,omitempty"`
+	Released           bool      `json:"released,omitempty"`
 	Description        string    `json:"description,omitempty"`
 	URL                string    `json:"url,omitempty"`
-	CollectionURL      string    `json:"collection_url,omitempty"`
+	SourceURL          string    `json:"source_url,omitempty"`
+	ParentVersionURL   string    `json:"parent_version,omitempty"`
 	PreviousVersionURL string    `json:"previous_version_url,omitempty"`
 	RootVersionURL     string    `json:"root_version_url,omitempty"`
 	Extras             Extras    `json:"extras"`
@@ -60,7 +61,10 @@ type SourceVersion struct {
 	CreatedBy          string    `json:"created_by,omitempty"`
 	UpdatedOn          time.Time `json:"updated_on,omitempty"`
 	UpdatedBy          string    `json:"updated_by,omitempty"`
-	Collection         Source    `json:"collection"`
+	Source             Source    `json:"source"`
+	VersionsURL        string    `json:"versions_url,omitempty"`
+	ConceptsURL        string    `json:"concepts_url,omitempty"`
+	MappingsURL        string    `json:"mappings_url,omitempty"`
 }
 
 type ResourceOperationTypeEnum string
@@ -104,7 +108,7 @@ var requiredParams = map[ResourceOperationTypeEnum][]string{
 	CreateCollectionVersionOperation:  {"OrganisationID", "CollectionID"},
 	ReleaseCollectionVersionOperation: {"OrganisationID", "CollectionID"},
 	RetireCollectionVersionOperation:  {"OrganisationID", "CollectionID"},
-	CreateSourceVersionOperation:      {"OrganisationID", "SourceID", "VersionID"},
+	CreateSourceVersionOperation:      {"OrganisationID", "SourceID"},
 	ReleaseSourceVersionOperation:     {"OrganisationID", "SourceID", "VersionID"},
 	RetireSourceVersionOperation:      {"OrganisationID", "SourceID", "VersionID"},
 }

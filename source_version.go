@@ -28,42 +28,11 @@ func (c *Client) CreateSourceVersion(ctx context.Context, headers *Headers, inpu
 
 	var output *SourceVersion
 	path := fmt.Sprintf("orgs/%s/sources/%s/versions/", headers.Organisation, headers.Source)
-
 	err := c.makeRequest(ctx, http.MethodPost, path, nil, input, &output)
 	if err != nil {
 		return nil, err
 	}
 
-	return output, nil
-}
-
-// ReleaseSourceVersion makes a POST request to
-// /orgs/:org/sources/:source/:version/
-// to release source version on OCL
-//
-// Parameters:
-//   - Headers: Contains organizatio, source and version IDs.
-//   - ReleaseVersion: This is the payload containing the fields to release source vesion on OCL.
-//
-// Returns:
-//   - SourceVersion if the operation succeeds.
-//   - error if the operation fails.
-func (c *Client) ReleaseSourceVersion(ctx context.Context, headers *Headers, input ReleaseVersion) (*SourceVersion, error) {
-	params := RequestParameters{
-		OrganisationID: &headers.Organisation,
-		SourceID:       &headers.Source,
-		VersionID:      &headers.VersionID,
-	}
-	if !isValidInput(params, ReleaseSourceVersionOperation) {
-		return nil, ErrInvalidIdentifierInput
-	}
-	var output *SourceVersion
-
-	path := fmt.Sprintf("orgs/%s/sources/%s/%s/", headers.Organisation, headers.Source, headers.VersionID)
-	err := c.makeRequest(ctx, http.MethodPost, path, nil, input, &output)
-	if err != nil {
-		return nil, err
-	}
 	return output, nil
 }
 
