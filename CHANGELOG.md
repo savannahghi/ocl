@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.13.0](https://github.com/savannahghi/ocl/compare/v1.12.0...v1.13.0) (2025-09-23)
+
+
+### Features
+
+* modifying source and collection version models ([#72](https://github.com/savannahghi/ocl/issues/72)) ([f134a20](https://github.com/savannahghi/ocl/commit/f134a20602c7e27b8f375271a874bb9e9acdbe4f))
+
 ## [1.12.0](https://github.com/savannahghi/ocl/compare/v1.11.0...v1.12.0) (2025-09-04)
 
 
