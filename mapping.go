@@ -56,10 +56,47 @@ type Mappings struct {
 	PublicCanView           bool      `json:"public_can_view,omitempty"`
 }
 
-type MappingsInput struct {
-	FromConceptURL string `json:"from_concept_url" validate:"required"`
-	MapType        string `json:"map_type" validate:"required"`
-	ToConceptURL   string `json:"to_concept_url" validate:"required"`
+type Mapping struct {
+	Type                string    `json:"type"`
+	UUID                string    `json:"uuid"`
+	ExternalID          string    `json:"external_id"`
+	Retired             string    `json:"retired"`
+	MapType             string    `json:"map_type"`
+	FromSourceOwner     string    `json:"from_source_owner"`
+	FromSourceOwnerType string    `json:"from_source_owner_type"`
+	FromSourceName      string    `json:"from_source_name"`
+	FromConceptCode     string    `json:"from_concept_code"`
+	FromConceptName     string    `json:"from_concept_name"`
+	FromSourceURL       string    `json:"from_source_url"`
+	FromConceptURL      string    `json:"from_concept_url"`
+	ToSourceOwner       string    `json:"to_source_owner"`
+	ToSourceOwnerType   string    `json:"to_source_owner_type"`
+	ToSourceName        string    `json:"to_source_name"`
+	ToConceptCode       string    `json:"to_concept_code"`
+	ToConceptName       string    `json:"to_concept_name"`
+	ToSourceURL         string    `json:"to_source_url"`
+	Source              string    `json:"source"`
+	Owner               string    `json:"owner"`
+	OwnerType           string    `json:"owner_type"`
+	OwnerURL            string    `json:"owner_url"`
+	URL                 string    `json:"url"`
+	Extras              struct{}  `json:"extras"`
+	CreatedOn           time.Time `json:"created_on"`
+	CreatedBy           string    `json:"created_by"`
+	UpdatedOn           time.Time `json:"updated_on"`
+	UpdatedBy           string    `json:"updated_by"`
+}
+
+type MappingInput struct {
+	MapType         string `json:"map_type,omitempty"`
+	FromSourceURL   string `json:"from_source_url,omitempty"`
+	FromConceptCode string `json:"from_concept_code,omitempty"`
+	FromConceptName string `json:"from_concept_name,omitempty"`
+	ToSourceURL     string `json:"to_source_url,omitempty"`
+	ToConceptCode   string `json:"to_concept_code,omitempty"`
+	ToConceptName   string `json:"to_concept_name,omitempty"`
+	Owner           string `json:"owner,omitempty"`
+	Source          string `json:"source,omitempty"`
 }
 
 type Checksums struct {
@@ -67,20 +104,20 @@ type Checksums struct {
 	Smart    string `json:"smart,omitempty"`
 }
 
-func (m *MappingsInput) constructConceptURL(organization, source, conceptID string) string {
+func (m *MappingInput) constructConceptURL(organization, source, conceptID string) string {
 	return fmt.Sprintf("/orgs/%s/sources/%s/concepts/%s/", organization, source, conceptID)
 }
 
-func (m *MappingsInput) ConstructFromConceptURL(organization, source, conceptID string) string {
+func (m *MappingInput) ConstructFromConceptURL(organization, source, conceptID string) string {
 	return m.constructConceptURL(organization, source, conceptID)
 }
 
-func (m *MappingsInput) ConstructToConceptURL(organization, source, conceptID string) string {
+func (m *MappingInput) ConstructToConceptURL(organization, source, conceptID string) string {
 	return m.constructConceptURL(organization, source, conceptID)
 }
 
-func (c *Client) CreateMappings(ctx context.Context, mappings *MappingsInput, headers *Headers) (*Mappings, error) {
-	var resp Mappings
+func (c *Client) CreateMappings(ctx context.Context, mappings *MappingInput, headers *Headers) (*Mapping, error) {
+	var resp Mapping
 
 	err := c.makeRequest(ctx, http.MethodPost, composeMappingsPath(headers), nil, mappings, &resp)
 	if err != nil {
