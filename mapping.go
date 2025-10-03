@@ -60,7 +60,7 @@ type Mapping struct {
 	Type                string    `json:"type"`
 	UUID                string    `json:"uuid"`
 	ExternalID          string    `json:"external_id"`
-	Retired             string    `json:"retired"`
+	Retired             bool      `json:"retired"`
 	MapType             string    `json:"map_type"`
 	FromSourceOwner     string    `json:"from_source_owner"`
 	FromSourceOwnerType string    `json:"from_source_owner_type"`
@@ -88,6 +88,7 @@ type Mapping struct {
 }
 
 type MappingInput struct {
+	ID              string `json:"id,omitempty"`
 	MapType         string `json:"map_type,omitempty"`
 	FromSourceURL   string `json:"from_source_url,omitempty"`
 	FromConceptCode string `json:"from_concept_code,omitempty"`
@@ -120,6 +121,17 @@ func (c *Client) CreateMappings(ctx context.Context, mappings *MappingInput, hea
 	var resp Mapping
 
 	err := c.makeRequest(ctx, http.MethodPost, composeMappingsPath(headers), nil, mappings, &resp)
+	if err != nil {
+		return nil, err
+	}
+
+	return &resp, nil
+}
+
+func (c *Client) UpdateMappings(ctx context.Context, mappings *MappingInput, headers *Headers) (*Mapping, error) {
+	var resp Mapping
+
+	err := c.makeRequest(ctx, http.MethodPut, composeUpdateMappingsPath(headers), nil, mappings, &resp)
 	if err != nil {
 		return nil, err
 	}
