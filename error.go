@@ -69,11 +69,16 @@ func IsDuplicateSourceIDError(err error) bool {
 
 // IsDuplicateSourceIDError checks if an error is due to a duplicate Source ID within an organization.
 func IsDuplicateMappingError(err error) bool {
-	errMessage := "Parent, map_type, from_concept, to_source, to_concept_code must be unique."
 	var apiErr *APIError
 	if errors.As(err, &apiErr) {
 		if apiErr.StatusCode == http.StatusBadRequest {
-			if slices.Contains(apiErr.APIError.All, errMessage) {
+			if slices.Contains(
+				apiErr.APIError.All,
+				"Parent, map_type, from_concept, to_source, to_concept_code must be unique.",
+			) || slices.Contains(
+				apiErr.APIError.All,
+				"Mapping ID must be unique within a source.",
+			) {
 				return true
 			}
 		}
