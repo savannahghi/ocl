@@ -159,4 +159,5 @@ type Headers struct {
 	Collection   string `json:"collection,omitempty"`
 	ConceptID    string `json:"concept,omitempty"`
 	VersionID    string `json:"version_id,omitempty"`
+	MappingID    string `json:"mapping,omitempty"`
 }
