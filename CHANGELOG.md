@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.0](https://github.com/savannahghi/ocl/compare/v1.13.1...v1.14.0) (2025-10-06)
+
+
+### Features
+
+* implement feature to update mapping ([#75](https://github.com/savannahghi/ocl/issues/75)) ([6a3f6d9](https://github.com/savannahghi/ocl/commit/6a3f6d95ca3a51b639e06cf7459f9c3e6de88464))
+
 ## [1.13.0](https://github.com/savannahghi/ocl/compare/v1.12.0...v1.13.0) (2025-09-23)
 
 
