@@ -39,21 +39,24 @@ type Collection struct {
 }
 
 // This input has been informed by the following resouces
-type CollectionUpdateInput struct {
-	ExternalID       *string   `json:"external_id,omitempty"`
-	Name             *string   `json:"name,omitempty"`
-	FullName         *string   `json:"full_name,omitempty"`
-	CollectionType   *string   `json:"collection_type,omitempty"`
-	PublicAccess     *string   `json:"public_access,omitempty"`
-	SupportedLocales []*string `json:"supported_locales,omitempty"`
-	Website          *string   `json:"website,omitempty"`
-	Description      *string   `json:"description,omitempty"`
-	Extras           *Extras   `json:"extras,omitempty"`
+type CollectionInput struct {
+	ID               string   `json:"id,omitempty"`
+	ShortCode        string   `json:"short_code,omitempty"`
+	ExternalID       string   `json:"external_id,omitempty"`
+	Name             string   `json:"name,omitempty"`
+	FullName         string   `json:"full_name,omitempty"`
+	CollectionType   string   `json:"collection_type,omitempty"`
+	PublicAccess     string   `json:"public_access,omitempty"`
+	PreferredSource  string   `json:"preferred_source,omitempty"`
+	SupportedLocales []string `json:"supported_locales,omitempty"`
+	Website          string   `json:"website,omitempty"`
+	Description      string   `json:"description,omitempty"`
+	Extras           Extras   `json:"extras,omitempty"`
 }
 
 type Extras struct{}
 
-func (c *Client) CreateCollection(ctx context.Context, collection *Collection, headers *Headers) (*Collection, error) {
+func (c *Client) CreateCollection(ctx context.Context, collection *CollectionInput, headers *Headers) (*Collection, error) {
 	var resp Collection
 	params := RequestParameters{
 		OrganisationID: &headers.Organisation,
@@ -81,7 +84,7 @@ func (c *Client) RetireCollection(ctx context.Context, headers *Headers) error {
 	return nil
 }
 
-func (c *Client) UpdateCollection(ctx context.Context, input *CollectionUpdateInput, headers *Headers) (*Collection, error) {
+func (c *Client) UpdateCollection(ctx context.Context, input *CollectionInput, headers *Headers) (*Collection, error) {
 	var output Collection
 	params := RequestParameters{
 		OrganisationID: &headers.Organisation,
