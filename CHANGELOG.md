@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.16.0](https://github.com/savannahghi/ocl/compare/v1.15.0...v1.16.0) (2025-10-07)
+
+
+### Features
+
+* changing collection payload ([#79](https://github.com/savannahghi/ocl/issues/79)) ([01d9c00](https://github.com/savannahghi/ocl/commit/01d9c009da8da806f0d87442745b8d6e16d3d5d7))
+
 ## [1.15.0](https://github.com/savannahghi/ocl/compare/v1.14.0...v1.15.0) (2025-10-06)
 
 
