@@ -2,6 +2,7 @@ package ocl
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"time"
 )
@@ -59,6 +60,13 @@ type Descriptions struct {
 	Checksum        string `json:"checksum,omitempty"`
 }
 
+type ConceptPage struct {
+	Count    int        `json:"count"`
+	Next     *string    `json:"next"`
+	Previous *string    `json:"previous"`
+	Results  []*Concept `json:"results"`
+}
+
 // Concept is a unit of meaning that can represent a clinical idea e.g a disease, symptom, medication etc.
 // Each concept is uniquely identified within the system and has different attributes attached to it.
 
@@ -89,7 +97,18 @@ func (c *Client) FetchConcept(ctx context.Context, headers *Headers) (*Concept, 
 
 	err := c.makeRequest(ctx, http.MethodGet, composeConceptURL(headers), nil, nil, &resp)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to fetch concept: %w", err)
+	}
+
+	return &resp, nil
+}
+
+func (c *Client) ListConcepts(ctx context.Context, headers *Headers) (*ConceptPage, error) {
+	var resp ConceptPage
+
+	err := c.makeRequest(ctx, http.MethodGet, composeConceptsURL(headers), nil, nil, &resp)
+	if err != nil {
+		return nil, fmt.Errorf("failed to list concepts: %w", err)
 	}
 
 	return &resp, nil
