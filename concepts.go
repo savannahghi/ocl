@@ -84,6 +84,17 @@ func (c *Client) UpdateConcept(ctx context.Context, concept *Concept, headers *H
 	return &resp, nil
 }
 
+func (c *Client) FetchConcept(ctx context.Context, headers *Headers) (*Concept, error) {
+	var resp Concept
+
+	err := c.makeRequest(ctx, http.MethodGet, composeConceptURL(headers), nil, nil, &resp)
+	if err != nil {
+		return nil, err
+	}
+
+	return &resp, nil
+}
+
 // composeConceptsURL forms the create/get concepts url. It follows this path
 // /orgs/{org}/sources/{source}/concepts/.
 func composeConceptsURL(headers *Headers) string {
