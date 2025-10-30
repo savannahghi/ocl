@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.17.0](https://github.com/savannahghi/ocl/compare/v1.16.0...v1.17.0) (2025-10-30)
+
+
+### Features
+
+* enable fetching concepts from OCL ([#81](https://github.com/savannahghi/ocl/issues/81)) ([22c893a](https://github.com/savannahghi/ocl/commit/22c893ae9806907a1e4f066ac553692d86ac6df3))
+* list concepts within a source from OCL ([#83](https://github.com/savannahghi/ocl/issues/83)) ([caf7230](https://github.com/savannahghi/ocl/commit/caf7230c8577cbb0b8efacca5e716dbb2d7b8bbf))
+
 ## [1.16.0](https://github.com/savannahghi/ocl/compare/v1.15.0...v1.16.0) (2025-10-07)
 
 
