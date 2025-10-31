@@ -93,9 +93,11 @@ type MappingInput struct {
 	FromSourceURL   string `json:"from_source_url,omitempty"`
 	FromConceptCode string `json:"from_concept_code,omitempty"`
 	FromConceptName string `json:"from_concept_name,omitempty"`
+	FromConceptURL  string `json:"from_concept_url,omitempty"`
 	ToSourceURL     string `json:"to_source_url,omitempty"`
 	ToConceptCode   string `json:"to_concept_code,omitempty"`
 	ToConceptName   string `json:"to_concept_name,omitempty"`
+	ToConceptURL    string `json:"to_concept_url,omitempty"`
 	Owner           string `json:"owner,omitempty"`
 	Source          string `json:"source,omitempty"`
 }
