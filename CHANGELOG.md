@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.17.1](https://github.com/savannahghi/ocl/compare/v1.17.0...v1.17.1) (2025-10-31)
+
+
+### Bug Fixes
+
+* add concept to and from URLs to mapping input ([#84](https://github.com/savannahghi/ocl/issues/84)) ([2361493](https://github.com/savannahghi/ocl/commit/23614935c7ce348936a28fe44b10dc8beefb0e8c))
+
 ## [1.17.0](https://github.com/savannahghi/ocl/compare/v1.16.0...v1.17.0) (2025-10-30)
 
 
