@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.18.0](https://github.com/savannahghi/ocl/compare/v1.17.1...v1.18.0) (2025-11-03)
+
+
+### Features
+
+* download zip export of a source's version ([#86](https://github.com/savannahghi/ocl/issues/86)) ([c3992ce](https://github.com/savannahghi/ocl/commit/c3992ceec106db4ec263a2437888d98f0880fba2))
+
 ## [1.17.1](https://github.com/savannahghi/ocl/compare/v1.17.0...v1.17.1) (2025-10-31)
 
 
