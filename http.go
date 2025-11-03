@@ -147,6 +147,24 @@ func (c *Client) makeRequest(
 	return nil
 }
 
+func (c *Client) streamRawData(
+	ctx context.Context,
+	method, path string,
+	params url.Values,
+) (io.ReadCloser, error) {
+	request, err := c.newRequest(ctx, method, path, params, nil)
+	if err != nil {
+		return nil, fmt.Errorf("failed to make new reqeust: %w", err)
+	}
+
+	resp, err := c.HTTP.Do(request)
+	if err != nil {
+		return nil, fmt.Errorf("error executing request: %w", err)
+	}
+
+	return resp.Body, nil
+}
+
 // Headers represents the custom headers sent to the client. In OCL, concepts are namespaced
 // with Organisations and sources e.g You can have WHO as an org, and many sources within that
 // org e.g ICD-10, ICD-11.

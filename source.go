@@ -3,6 +3,7 @@ package ocl
 import (
 	"context"
 	"fmt"
+	"io"
 	"net/http"
 	"time"
 )
@@ -115,4 +116,13 @@ func (c *Client) UpdateOrganizationSource(ctx context.Context, headers *Headers)
 	}
 
 	return resp, nil
+}
+
+func (c *Client) DownloadVersionExport(ctx context.Context, headers *Headers) (io.ReadCloser, error) {
+	sourceVersionPath := fmt.Sprintf(
+		"orgs/%s/sources/%s/%s/export/",
+		headers.Organisation, headers.Source, headers.VersionID,
+	)
+
+	return c.streamRawData(ctx, http.MethodGet, sourceVersionPath, nil)
 }
