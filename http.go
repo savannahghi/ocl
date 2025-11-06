@@ -162,6 +162,21 @@ func (c *Client) streamRawData(
 		return nil, fmt.Errorf("error executing request: %w", err)
 	}
 
+	// See https://docs.openconceptlab.org/en/latest/oclapi/apireference/exportapi.html
+	// for response codes returned by OCL when requested export data is not ready
+	if resp.StatusCode < 299 && resp.StatusCode > 200 {
+		return nil, errors.New("requested data is not ready")
+	}
+
+	if resp.StatusCode >= 400 {
+		body, err := io.ReadAll(resp.Body)
+		if err != nil {
+			return nil, fmt.Errorf("failed to read error response from body: %w", err)
+		}
+
+		return nil, fmt.Errorf("failed to process request: %v", string(body))
+	}
+
 	return resp.Body, nil
 }
 
