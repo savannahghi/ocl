@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.18.1](https://github.com/savannahghi/ocl/compare/v1.18.0...v1.18.1) (2025-11-06)
+
+
+### Bug Fixes
+
+* return OCL API specific error when a non-200 error is returned from export API ([#88](https://github.com/savannahghi/ocl/issues/88)) ([53cf2a2](https://github.com/savannahghi/ocl/commit/53cf2a23ddd0f88c346dab1d5e0e48c8a98fd49a))
+
 ## [1.18.0](https://github.com/savannahghi/ocl/compare/v1.17.1...v1.18.0) (2025-11-03)
 
 
