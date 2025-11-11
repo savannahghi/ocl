@@ -38,7 +38,7 @@ func (c *Client) CreateSourceVersion(ctx context.Context, headers *Headers, inpu
 
 // RetireSourceVersion makes a DELETE request to
 // /orgs/:org/sources/:source/:version/
-// to deaactivate a source version on OCL
+// to deactivate a source version on OCL
 //
 // Parameters:
 //   - Headers: Contains organization, source and version IDs.
@@ -61,4 +61,27 @@ func (c *Client) RetireSourceVersion(ctx context.Context, headers *Headers) erro
 		return err
 	}
 	return nil
+}
+
+// ListSourceVersion makes a GET request to
+// /orgs/:org/sources/:source/:versions/
+// to list all versions of a source in OCL
+//
+// Parameters:
+//   - Headers: Contains organization, source and version IDs.
+//
+// Returns:
+//   - SourceVersion and a nil error if the operation succeeds.
+//   - error if the operation fails.
+func (c *Client) ListSourceVersions(ctx context.Context, headers *Headers) ([]SourceVersion, error) {
+	path := fmt.Sprintf("/orgs/%s/sources/%s/versions/", headers.Organisation, headers.Source)
+
+	var sourceVersions []SourceVersion
+
+	err := c.makeRequest(ctx, http.MethodGet, path, nil, nil, &sourceVersions)
+	if err != nil {
+		return nil, err
+	}
+
+	return sourceVersions, nil
 }
