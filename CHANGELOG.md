@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.19.0](https://github.com/savannahghi/ocl/compare/v1.18.1...v1.19.0) (2025-11-11)
+
+
+### Features
+
+* allow listing of all versions of a source in OCL ([#90](https://github.com/savannahghi/ocl/issues/90)) ([2f9838c](https://github.com/savannahghi/ocl/commit/2f9838c419d9e4c4a52f91ef54c6a1df2c89259d))
+
 ## [1.18.1](https://github.com/savannahghi/ocl/compare/v1.18.0...v1.18.1) (2025-11-06)
 
 
