@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.19.1](https://github.com/savannahghi/ocl/compare/v1.19.0...v1.19.1) (2025-11-20)
+
+
+### Bug Fixes
+
+* add trailing slash to update concept api path ([#92](https://github.com/savannahghi/ocl/issues/92)) ([b45c3cb](https://github.com/savannahghi/ocl/commit/b45c3cbc4e61c04d01c7830581a0066233ce787c))
+
 ## [1.19.0](https://github.com/savannahghi/ocl/compare/v1.18.1...v1.19.0) (2025-11-11)
 
 
