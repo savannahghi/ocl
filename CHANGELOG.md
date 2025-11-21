@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.20.0](https://github.com/savannahghi/ocl/compare/v1.19.1...v1.20.0) (2025-11-21)
+
+
+### Features
+
+* fetch codeSystem from OCL ([#94](https://github.com/savannahghi/ocl/issues/94)) ([101cc39](https://github.com/savannahghi/ocl/commit/101cc398ead758782508dd0ff14a0ec422acdd03))
+
 ## [1.19.1](https://github.com/savannahghi/ocl/compare/v1.19.0...v1.19.1) (2025-11-20)
 
 
