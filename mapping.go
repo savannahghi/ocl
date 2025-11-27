@@ -133,7 +133,7 @@ func (c *Client) CreateMappings(ctx context.Context, mappings *MappingInput, hea
 func (c *Client) UpdateMappings(ctx context.Context, mappings *MappingInput, headers *Headers) (*Mapping, error) {
 	var resp Mapping
 
-	err := c.makeRequest(ctx, http.MethodPut, composeUpdateMappingsPath(headers), nil, mappings, &resp)
+	err := c.makeRequest(ctx, http.MethodPatch, composeUpdateMappingsPath(headers), nil, mappings, &resp)
 	if err != nil {
 		return nil, err
 	}
