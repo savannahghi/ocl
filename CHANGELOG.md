@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.20.1](https://github.com/savannahghi/ocl/compare/v1.20.0...v1.20.1) (2025-11-27)
+
+
+### Bug Fixes
+
+* update mapping endpoint http method from put to patch ([#96](https://github.com/savannahghi/ocl/issues/96)) ([2606cfb](https://github.com/savannahghi/ocl/commit/2606cfbe3ee6f0b0b15bb9cf4bb9eb3a6572eac6))
+
 ## [1.20.0](https://github.com/savannahghi/ocl/compare/v1.19.1...v1.20.0) (2025-11-21)
 
 
