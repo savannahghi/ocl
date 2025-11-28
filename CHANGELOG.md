@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.20.3](https://github.com/savannahghi/ocl/compare/v1.20.2...v1.20.3) (2025-11-28)
+
+
+### Bug Fixes
+
+* remove redundant mapping struct ([#100](https://github.com/savannahghi/ocl/issues/100)) ([8b2259e](https://github.com/savannahghi/ocl/commit/8b2259e28e27d5e0423c7a6c428de46312b87984))
+
 ## [1.20.2](https://github.com/savannahghi/ocl/compare/v1.20.1...v1.20.2) (2025-11-28)
 
 
