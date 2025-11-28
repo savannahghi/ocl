@@ -87,39 +87,24 @@ type Mapping struct {
 	UpdatedBy           string    `json:"updated_by"`
 }
 
-type MappingInput struct {
-	ID              string `json:"id,omitempty"`
-	MapType         string `json:"map_type,omitempty"`
-	FromSourceURL   string `json:"from_source_url,omitempty"`
-	FromConceptCode string `json:"from_concept_code,omitempty"`
-	FromConceptName string `json:"from_concept_name,omitempty"`
-	FromConceptURL  string `json:"from_concept_url,omitempty"`
-	ToSourceURL     string `json:"to_source_url,omitempty"`
-	ToConceptCode   string `json:"to_concept_code,omitempty"`
-	ToConceptName   string `json:"to_concept_name,omitempty"`
-	ToConceptURL    string `json:"to_concept_url,omitempty"`
-	Owner           string `json:"owner,omitempty"`
-	Source          string `json:"source,omitempty"`
-}
-
 type Checksums struct {
 	Standard string `json:"standard,omitempty"`
 	Smart    string `json:"smart,omitempty"`
 }
 
-func (m *MappingInput) constructConceptURL(organization, source, conceptID string) string {
+func (m *Mapping) constructConceptURL(organization, source, conceptID string) string {
 	return fmt.Sprintf("/orgs/%s/sources/%s/concepts/%s/", organization, source, conceptID)
 }
 
-func (m *MappingInput) ConstructFromConceptURL(organization, source, conceptID string) string {
+func (m *Mapping) ConstructFromConceptURL(organization, source, conceptID string) string {
 	return m.constructConceptURL(organization, source, conceptID)
 }
 
-func (m *MappingInput) ConstructToConceptURL(organization, source, conceptID string) string {
+func (m *Mapping) ConstructToConceptURL(organization, source, conceptID string) string {
 	return m.constructConceptURL(organization, source, conceptID)
 }
 
-func (c *Client) CreateMappings(ctx context.Context, mappings *MappingInput, headers *Headers) (*Mapping, error) {
+func (c *Client) CreateMappings(ctx context.Context, mappings *Mapping, headers *Headers) (*Mapping, error) {
 	var resp Mapping
 
 	err := c.makeRequest(ctx, http.MethodPost, composeMappingsPath(headers), nil, mappings, &resp)
@@ -130,7 +115,7 @@ func (c *Client) CreateMappings(ctx context.Context, mappings *MappingInput, hea
 	return &resp, nil
 }
 
-func (c *Client) UpdateMappings(ctx context.Context, mappings *MappingInput, headers *Headers) (*Mapping, error) {
+func (c *Client) UpdateMappings(ctx context.Context, mappings *Mapping, headers *Headers) (*Mapping, error) {
 	var resp Mapping
 
 	err := c.makeRequest(ctx, http.MethodPatch, composeUpdateMappingsPath(headers), nil, mappings, &resp)
