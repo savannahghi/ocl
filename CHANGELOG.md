@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.20.2](https://github.com/savannahghi/ocl/compare/v1.20.1...v1.20.2) (2025-11-28)
+
+
+### Bug Fixes
+
+* remove mappinginput struct ([#98](https://github.com/savannahghi/ocl/issues/98)) ([6c14be2](https://github.com/savannahghi/ocl/commit/6c14be29e1ef6ada81cbfdcaf82f70ba348ca878))
+
 ## [1.20.1](https://github.com/savannahghi/ocl/compare/v1.20.0...v1.20.1) (2025-11-27)
 
 
