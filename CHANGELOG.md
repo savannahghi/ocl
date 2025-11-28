@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.20.4](https://github.com/savannahghi/ocl/compare/v1.20.3...v1.20.4) (2025-11-28)
+
+
+### Bug Fixes
+
+* update mappings error ([#102](https://github.com/savannahghi/ocl/issues/102)) ([87b4595](https://github.com/savannahghi/ocl/commit/87b4595a7aff03d3c5cb83f246853cee4e8d9fa5))
+
 ## [1.20.3](https://github.com/savannahghi/ocl/compare/v1.20.2...v1.20.3) (2025-11-28)
 
 
