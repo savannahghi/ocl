@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-type Mappings struct {
+type Mapping struct {
 	Extras                  Extras    `json:"extras,omitempty"`
 	Checksums               Checksums `json:"checksums,omitempty"`
 	ExternalID              any       `json:"external_id,omitempty"`
@@ -54,37 +54,6 @@ type Mappings struct {
 	CreatedBy               string    `json:"created_by,omitempty"`
 	UpdatedBy               string    `json:"updated_by,omitempty"`
 	PublicCanView           bool      `json:"public_can_view,omitempty"`
-}
-
-type Mapping struct {
-	Type                string    `json:"type"`
-	UUID                string    `json:"uuid"`
-	ExternalID          string    `json:"external_id"`
-	Retired             bool      `json:"retired"`
-	MapType             string    `json:"map_type"`
-	FromSourceOwner     string    `json:"from_source_owner"`
-	FromSourceOwnerType string    `json:"from_source_owner_type"`
-	FromSourceName      string    `json:"from_source_name"`
-	FromConceptCode     string    `json:"from_concept_code"`
-	FromConceptName     string    `json:"from_concept_name"`
-	FromSourceURL       string    `json:"from_source_url"`
-	FromConceptURL      string    `json:"from_concept_url"`
-	ToSourceOwner       string    `json:"to_source_owner"`
-	ToSourceOwnerType   string    `json:"to_source_owner_type"`
-	ToSourceName        string    `json:"to_source_name"`
-	ToConceptCode       string    `json:"to_concept_code"`
-	ToConceptName       string    `json:"to_concept_name"`
-	ToSourceURL         string    `json:"to_source_url"`
-	Source              string    `json:"source"`
-	Owner               string    `json:"owner"`
-	OwnerType           string    `json:"owner_type"`
-	OwnerURL            string    `json:"owner_url"`
-	URL                 string    `json:"url"`
-	Extras              struct{}  `json:"extras"`
-	CreatedOn           time.Time `json:"created_on"`
-	CreatedBy           string    `json:"created_by"`
-	UpdatedOn           time.Time `json:"updated_on"`
-	UpdatedBy           string    `json:"updated_by"`
 }
 
 type Checksums struct {
