@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.21.0](https://github.com/savannahghi/ocl/compare/v1.20.4...v1.21.0) (2025-12-04)
+
+
+### Features
+
+* fetch resources ([#105](https://github.com/savannahghi/ocl/issues/105)) ([f2ba93e](https://github.com/savannahghi/ocl/commit/f2ba93e7affbd7002048fc956f7457e4cfc7fe77))
+
 ## [1.20.4](https://github.com/savannahghi/ocl/compare/v1.20.3...v1.20.4) (2025-11-28)
 
 
