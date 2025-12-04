@@ -19,3 +19,13 @@ func (c *Client) GetCodeSytem(ctx context.Context, headers Headers) (*model.Code
 
 	return &codeSystem, nil
 }
+
+func (c *Client) GetAllCodeSystem(ctx context.Context, headers Headers) (*model.Bundle, error) {
+	output := model.Bundle{}
+
+	err := c.makeRequest(ctx, http.MethodGet, "fhir/CodeSystem/", nil, nil, &output)
+	if err != nil {
+		return nil, fmt.Errorf("failed to fetch CodeSystem %w", err)
+	}
+	return &output, nil
+}
