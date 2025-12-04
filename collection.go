@@ -100,3 +100,13 @@ func (c *Client) UpdateCollection(ctx context.Context, input *CollectionInput, h
 	}
 	return &output, nil
 }
+
+func (c *Client) Collection(ctx context.Context, headers *Headers) (*Collection, error) {
+	var output Collection
+	path := fmt.Sprintf("orgs/%s/collections/%s/", headers.Organisation, headers.Collection)
+	err := c.makeRequest(ctx, http.MethodGet, path, nil, nil, &output)
+	if err != nil {
+		return nil, fmt.Errorf("failed to fetch collection %w", err)
+	}
+	return &output, nil
+}
