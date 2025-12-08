@@ -28,7 +28,10 @@ func (c *Client) CreateCollectionReference(
 ) (*CollectionReferenceAsyncResponse, error) {
 	var resp *CollectionReferenceAsyncResponse
 
-	path := fmt.Sprintf("orgs/%s/collections/%s/references/?cascade=sourcetoconcepts&async=true", headers.Organisation, headers.Collection)
+	path := fmt.Sprintf(
+		"orgs/%s/collections/%s/references/?cascade=sourcetoconcepts&async=true",
+		headers.Organisation, headers.Collection,
+	)
 
 	err := c.makeRequest(ctx, http.MethodPut, path, nil, collectionRef, &resp)
 	if err != nil {
