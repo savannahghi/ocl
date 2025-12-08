@@ -67,7 +67,7 @@ func IsDuplicateSourceIDError(err error) bool {
 	return false
 }
 
-// IsDuplicateSourceIDError checks if an error is due to a duplicate Source ID within an organization.
+// IsDuplicateMappingError checks if an error is due to a duplicate Source ID within an organization.
 func IsDuplicateMappingError(err error) bool {
 	var apiErr *APIError
 	if errors.As(err, &apiErr) {
@@ -84,7 +84,7 @@ func IsDuplicateMappingError(err error) bool {
 	return false
 }
 
-func IsDuplicateMnemonicError(err error) bool {
+func IsDuplicateMnemonicError(err error) bool { //nolint:cyclop
 	var apiErr *APIError
 	if !errors.As(err, &apiErr) {
 		return false
@@ -95,6 +95,7 @@ func IsDuplicateMnemonicError(err error) bool {
 		if s == "" {
 			return false
 		}
+
 		if strings.Contains(s, "mnemonic") &&
 			(strings.Contains(s, "already exists") ||
 				strings.Contains(s, "must be unique") ||
@@ -110,10 +111,8 @@ func IsDuplicateMnemonicError(err error) bool {
 		return true
 	}
 
-	for _, m := range apiErr.APIError.All {
-		if hasDupWords(m) {
-			return true
-		}
+	if slices.ContainsFunc(apiErr.APIError.All, hasDupWords) {
+		return true
 	}
 
 	if hasDupWords(apiErr.RawBody) {

@@ -17,7 +17,10 @@ import (
 // Returns:
 //   - SourceVersion if the operation succeeds.
 //   - error if the operation fails.
-func (c *Client) CreateSourceVersion(ctx context.Context, headers *Headers, input *SourceVersionInput) (*SourceVersion, error) {
+func (c *Client) CreateSourceVersion(
+	ctx context.Context,
+	headers *Headers, input *SourceVersionInput,
+) (*SourceVersion, error) {
 	params := RequestParameters{
 		OrganisationID: &headers.Organisation,
 		SourceID:       &headers.Source,
@@ -27,7 +30,9 @@ func (c *Client) CreateSourceVersion(ctx context.Context, headers *Headers, inpu
 	}
 
 	var output *SourceVersion
+
 	path := fmt.Sprintf("orgs/%s/sources/%s/versions/", headers.Organisation, headers.Source)
+
 	err := c.makeRequest(ctx, http.MethodPost, path, nil, input, &output)
 	if err != nil {
 		return nil, err
@@ -55,15 +60,18 @@ func (c *Client) RetireSourceVersion(ctx context.Context, headers *Headers) erro
 	if !isValidInput(params, RetireSourceVersionOperation) {
 		return ErrInvalidIdentifierInput
 	}
+
 	path := fmt.Sprintf("/orgs/%s/sources/%s/%s/", headers.Organisation, headers.Source, headers.VersionID)
+
 	err := c.makeRequest(ctx, http.MethodDelete, path, nil, nil, nil)
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
-// ListSourceVersion makes a GET request to
+// ListSourceVersions makes a GET request to
 // /orgs/:org/sources/:source/:versions/
 // to list all versions of a source in OCL
 //

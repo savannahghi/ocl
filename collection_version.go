@@ -8,20 +8,12 @@ import (
 
 // CreateCollectionVersion makes a POST request to
 // /orgs/:org/collections/:collection/versions/:version/
-// to create a new collection version in OCL
-//
-// Parameters:
-//   - Headers: Contains organization and collection IDs.
-//   - CollectionVersionInput: this is the payload containing the fields (This is a required field or the operation fails).
-//     to create collection version in OCL.
-//
-// Returns:
-//   - CollectionVersion if the operation succeeds.
-//   - error if the operation fails.
+// to create a new collection version in OCL.
 func (c *Client) CreateCollectionVersion(
 	ctx context.Context, input *CollectionVersionInput, headers *Headers,
 ) (*CollectionVersion, error) {
 	var resp *CollectionVersion
+
 	params := RequestParameters{
 		OrganisationID: &headers.Organisation,
 		CollectionID:   &headers.Collection,
@@ -51,7 +43,10 @@ func (c *Client) CreateCollectionVersion(
 // Returns:
 //   - CollectionVersion if the operation succeeds.
 //   - error if the operation fails.
-func (c *Client) ReleaseCollectionVersion(ctx context.Context, headers *Headers, input *ReleaseVersion) (*CollectionVersion, error) {
+func (c *Client) ReleaseCollectionVersion(
+	ctx context.Context, headers *Headers,
+	input *ReleaseVersion,
+) (*CollectionVersion, error) {
 	params := RequestParameters{
 		OrganisationID: &headers.Organisation,
 		CollectionID:   &headers.Collection,
@@ -62,10 +57,17 @@ func (c *Client) ReleaseCollectionVersion(ctx context.Context, headers *Headers,
 	}
 
 	var output *CollectionVersion
-	path := fmt.Sprintf("/orgs/%s/collections/%s/versions/%s/", headers.Organisation, headers.Collection, headers.VersionID)
-	if err := c.makeRequest(ctx, http.MethodPost, path, nil, input, output); err != nil {
+
+	path := fmt.Sprintf(
+		"/orgs/%s/collections/%s/versions/%s/",
+		headers.Organisation, headers.Collection, headers.VersionID,
+	)
+
+	err := c.makeRequest(ctx, http.MethodPost, path, nil, input, output)
+	if err != nil {
 		return nil, err
 	}
+
 	return output, nil
 }
 
@@ -88,9 +90,17 @@ func (c *Client) RetireCollectionVersion(ctx context.Context, headers *Headers) 
 	if !isValidInput(params, ReleaseCollectionVersionOperation) {
 		return ErrInvalidIdentifierInput
 	}
-	path := fmt.Sprintf("/orgs/%s/collections/%s/versions/%s/", headers.Organisation, headers.Collection, headers.VersionID)
-	if err := c.makeRequest(ctx, http.MethodDelete, path, nil, nil, nil); err != nil {
+
+	path := fmt.Sprintf(
+		"/orgs/%s/collections/%s/versions/%s/",
+		headers.Organisation, headers.Collection,
+		headers.VersionID,
+	)
+
+	err := c.makeRequest(ctx, http.MethodDelete, path, nil, nil, nil)
+	if err != nil {
 		return err
 	}
+
 	return nil
 }

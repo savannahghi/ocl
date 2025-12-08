@@ -2,6 +2,7 @@ package ocl
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -97,13 +98,26 @@ func (c *Client) DeleteOrganizationSource(ctx context.Context, headers *Headers)
 	return nil
 }
 
+func (c *Client) GetOrganizationSource(ctx context.Context, headers *Headers) (*Source, error) {
+	var output Source
+
+	path := fmt.Sprintf("orgs/%s/sources/%s/", headers.Organisation, headers.Source)
+
+	err := c.makeRequest(ctx, http.MethodGet, path, nil, nil, &output)
+	if err != nil {
+		return nil, fmt.Errorf("failed to fetch source :%w", err)
+	}
+
+	return &output, nil
+}
+
 func (c *Client) UpdateOrganizationSource(ctx context.Context, headers *Headers) (*Source, error) {
 	params := RequestParameters{
 		OrganisationID: &headers.Organisation,
 		SourceID:       &headers.Source,
 	}
 	if !isValidInput(params, UpdateSourceOrgOperation) {
-		return nil, fmt.Errorf("invalid input:\n either source or organization ID missing")
+		return nil, errors.New("invalid input:\n either source or organization ID missing")
 	}
 
 	var resp *Source

@@ -38,7 +38,6 @@ type Collection struct {
 	CanonicalURL     string    `json:"canonical_url,omitempty"`
 }
 
-// This input has been informed by the following resouces
 type CollectionInput struct {
 	ID               string   `json:"id,omitempty"`
 	ShortCode        string   `json:"short_code,omitempty"`
@@ -56,8 +55,13 @@ type CollectionInput struct {
 
 type Extras struct{}
 
-func (c *Client) CreateCollection(ctx context.Context, collection *CollectionInput, headers *Headers) (*Collection, error) {
+func (c *Client) CreateCollection(
+	ctx context.Context,
+	collection *CollectionInput,
+	headers *Headers,
+) (*Collection, error) {
 	var resp Collection
+
 	params := RequestParameters{
 		OrganisationID: &headers.Organisation,
 	}
@@ -66,26 +70,29 @@ func (c *Client) CreateCollection(ctx context.Context, collection *CollectionInp
 	}
 
 	path := fmt.Sprintf("orgs/%s/collections/", headers.Organisation)
+
 	err := c.makeRequest(ctx, http.MethodPost, path, nil, collection, &resp)
 	if err != nil {
 		return nil, err
 	}
+
 	return &resp, nil
 }
 
 func (c *Client) RetireCollection(ctx context.Context, headers *Headers) error {
-
 	path := fmt.Sprintf("orgs/%s/collections/%s/", headers.Organisation, headers.Collection)
 
 	err := c.makeRequest(ctx, http.MethodDelete, path, nil, nil, nil)
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
 func (c *Client) UpdateCollection(ctx context.Context, input *CollectionInput, headers *Headers) (*Collection, error) {
 	var output Collection
+
 	params := RequestParameters{
 		OrganisationID: &headers.Organisation,
 		CollectionID:   &headers.Collection,
@@ -93,20 +100,26 @@ func (c *Client) UpdateCollection(ctx context.Context, input *CollectionInput, h
 	if !isValidInput(params, UpdateCollectionOperation) {
 		return nil, ErrInvalidIdentifierInput
 	}
+
 	path := fmt.Sprintf("orgs/%s/collections/%s/", headers.Organisation, headers.Collection)
 
-	if err := c.makeRequest(ctx, http.MethodPut, path, nil, input, &output); err != nil {
+	err := c.makeRequest(ctx, http.MethodPut, path, nil, input, &output)
+	if err != nil {
 		return nil, err
 	}
+
 	return &output, nil
 }
 
-func (c *Client) Collection(ctx context.Context, headers *Headers) (*Collection, error) {
+func (c *Client) GetCollection(ctx context.Context, headers *Headers) (*Collection, error) {
 	var output Collection
+
 	path := fmt.Sprintf("orgs/%s/collections/%s/", headers.Organisation, headers.Collection)
+
 	err := c.makeRequest(ctx, http.MethodGet, path, nil, nil, &output)
 	if err != nil {
 		return nil, fmt.Errorf("failed to fetch collection %w", err)
 	}
+
 	return &output, nil
 }

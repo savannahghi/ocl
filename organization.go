@@ -2,6 +2,7 @@ package ocl
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 	"time"
@@ -36,11 +37,11 @@ type OrganizationOutput struct {
 
 // SimpleOrganizationInput is a simple model used to create an Organization in advantage.
 type SimpleOrganizationInput struct {
-	ID           string `json:"id" validate:"required"`
-	PublicAccess string `json:"public_access" validate:"required"`
-	Name         string `json:"name" validate:"required"`
-	Company      string `json:"company" validate:"required"`
-	Website      string `json:"website" validate:"required"`
+	ID           string `json:"id"                    validate:"required"`
+	PublicAccess string `json:"public_access"         validate:"required"`
+	Name         string `json:"name"                  validate:"required"`
+	Company      string `json:"company"               validate:"required"`
+	Website      string `json:"website"               validate:"required"`
 	Location     string `json:"location,omitempty"`
 	Extras       any    `json:"extras,omitempty"`
 	Description  string `json:"description,omitempty"`
@@ -53,15 +54,19 @@ func ValidateStruct(input interface{}) error {
 	return validate.Struct(input)
 }
 
-// CreateOrganization is used to create an organization
-func (c *Client) CreateOrganization(ctx context.Context, organization SimpleOrganizationInput) (*OrganizationOutput, error) {
-	if err := ValidateStruct(organization); err != nil {
+// CreateOrganization is used to create an organization.
+func (c *Client) CreateOrganization(
+	ctx context.Context,
+	organization SimpleOrganizationInput,
+) (*OrganizationOutput, error) {
+	err := ValidateStruct(organization)
+	if err != nil {
 		return nil, fmt.Errorf("invalid organization payload: %w", err)
 	}
 
 	var output OrganizationOutput
 
-	err := c.makeRequest(ctx, http.MethodPost, "orgs/", nil, organization, &output)
+	err = c.makeRequest(ctx, http.MethodPost, "orgs/", nil, organization, &output)
 	if err != nil {
 		return nil, err
 	}
@@ -69,9 +74,12 @@ func (c *Client) CreateOrganization(ctx context.Context, organization SimpleOrga
 	return &output, nil
 }
 
-func (c *Client) UpdateOrganization(ctx context.Context, organization SimpleOrganizationInput) (*OrganizationOutput, error) {
+func (c *Client) UpdateOrganization(
+	ctx context.Context,
+	organization SimpleOrganizationInput,
+) (*OrganizationOutput, error) {
 	if organization.ID == "" {
-		return nil, fmt.Errorf("organization ID cannot be null")
+		return nil, errors.New("organization ID cannot be null")
 	}
 
 	var output OrganizationOutput
@@ -88,7 +96,7 @@ func (c *Client) UpdateOrganization(ctx context.Context, organization SimpleOrga
 
 func (c *Client) GetOrganization(ctx context.Context, organizationID string) (*OrganizationOutput, error) {
 	if organizationID == "" {
-		return nil, fmt.Errorf("organization ID cannot be null")
+		return nil, errors.New("organization ID cannot be null")
 	}
 
 	var output OrganizationOutput
@@ -105,7 +113,7 @@ func (c *Client) GetOrganization(ctx context.Context, organizationID string) (*O
 
 func (c *Client) DeleteOrganization(ctx context.Context, organizationID string) error {
 	if organizationID == "" {
-		return fmt.Errorf("organization ID cannot be null")
+		return errors.New("organization ID cannot be null")
 	}
 
 	orgPath := fmt.Sprintf("orgs/%s/", organizationID)

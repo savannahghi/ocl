@@ -90,7 +90,7 @@ var ErrInvalidIdentifierInput = errors.New(
 	"invalid input identifiers: required IDs missing for operation",
 )
 
-// RequestParameters is a single struct to hold all possible input
+// RequestParameters is a single struct to hold all possible input.
 type RequestParameters struct {
 	OrganisationID *string
 	SourceID       *string
@@ -98,7 +98,7 @@ type RequestParameters struct {
 	VersionID      *string
 }
 
-// A map to define which parameters are required for each operation
+// A map to define which parameters are required for each operation.
 var requiredParams = map[ResourceOperationTypeEnum][]string{
 	DeleteSourceOrgOperation:          {"OrganisationID", "SourceID"},
 	UpdateSourceOrgOperation:          {"OrganisationID", "SourceID"},
@@ -113,21 +113,24 @@ var requiredParams = map[ResourceOperationTypeEnum][]string{
 	RetireSourceVersionOperation:      {"OrganisationID", "SourceID", "VersionID"},
 }
 
-// isValidInput: checks whether the required identifiers for a given operation are not nil
+// isValidInput: checks whether the required identifiers for a given operation are not nil.
 func isValidInput(params RequestParameters, operation ResourceOperationTypeEnum) bool {
 	required, ok := requiredParams[operation]
 	if !ok {
 		return false
 	}
+
 	v := reflect.ValueOf(params)
 	for _, fieldName := range required {
 		field := v.FieldByName(fieldName)
 		if !field.IsValid() {
 			return false
 		}
+
 		if field.Kind() == reflect.Pointer && field.IsNil() {
 			return false
 		}
 	}
+
 	return true
 }

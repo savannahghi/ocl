@@ -121,7 +121,7 @@ func composeConceptsURL(headers *Headers) string {
 }
 
 // composeConceptURL forms the get detail/update concepts url. It follows this path
-// /orgs/{org}/sources/{source}/concepts/{concept_id}/
+// /orgs/{org}/sources/{source}/concepts/{concept_id}/.
 func composeConceptURL(headers *Headers) string {
 	return composeOrgSourcePath(headers) + "/concepts/" + headers.ConceptID + "/"
 }
