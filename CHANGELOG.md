@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.22.0](https://github.com/savannahghi/ocl/compare/v1.21.0...v1.22.0) (2025-12-08)
+
+
+### Features
+
+* get organization source ([#107](https://github.com/savannahghi/ocl/issues/107)) ([3b8ab8e](https://github.com/savannahghi/ocl/commit/3b8ab8eac4f5c6f8c3523eb2c543e08e4ec5db68))
+
 ## [1.21.0](https://github.com/savannahghi/ocl/compare/v1.20.4...v1.21.0) (2025-12-04)
 
 
