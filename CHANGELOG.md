@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.23.0](https://github.com/savannahghi/ocl/compare/v1.22.0...v1.23.0) (2025-12-09)
+
+
+### Features
+
+* handling resource not found error ([#109](https://github.com/savannahghi/ocl/issues/109)) ([b104e3f](https://github.com/savannahghi/ocl/commit/b104e3f7aaf8c13e1a5df921078b78dec930991d))
+
 ## [1.22.0](https://github.com/savannahghi/ocl/compare/v1.21.0...v1.22.0) (2025-12-08)
 
 
