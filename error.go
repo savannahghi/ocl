@@ -121,3 +121,12 @@ func IsDuplicateMnemonicError(err error) bool { //nolint:cyclop
 
 	return false
 }
+
+func ResourceNotFoundErr(err error) bool {
+	var apiErr *APIError
+	if errors.As(err, &apiErr) && apiErr.StatusCode == http.StatusNotFound {
+		return true
+	}
+
+	return false
+}
