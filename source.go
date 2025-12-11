@@ -27,11 +27,11 @@ type Source struct {
 	Owner                  string    `json:"owner,omitempty"`
 	OwnerType              string    `json:"owner_type,omitempty"`
 	OwnerURL               string    `json:"owner_url,omitempty"`
-	CreatedOn              time.Time `json:"created_on,omitempty"`
-	UpdatedOn              time.Time `json:"updated_on,omitempty"`
+	CreatedOn              time.Time `json:"created_on,omitzero"`
+	UpdatedOn              time.Time `json:"updated_on,omitzero"`
 	CreatedBy              string    `json:"created_by,omitempty"`
 	UpdatedBy              string    `json:"updated_by,omitempty"`
-	Extras                 Extras    `json:"extras,omitempty"`
+	Extras                 Extras    `json:"extras,omitzero"`
 	ExternalID             any       `json:"external_id,omitempty"`
 	VersionsURL            string    `json:"versions_url,omitempty"`
 	Version                string    `json:"version,omitempty"`

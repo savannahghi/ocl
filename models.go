@@ -16,7 +16,7 @@ type CollectionVersionInput struct {
 	Released    bool   `json:"released,omitempty"`
 	Description string `json:"description,omitempty"`
 	ExternalID  string `json:"external_id,omitempty"`
-	Extras      Extras `json:"extras,omitempty"`
+	Extras      Extras `json:"extras,omitzero"`
 }
 
 type CollectionVersion struct {
@@ -30,11 +30,11 @@ type CollectionVersion struct {
 	PreviousVersionURL string     `json:"previous_version_url,omitempty"`
 	RootVersionURL     string     `json:"root_version_url,omitempty"`
 	Extras             Extras     `json:"extras"`
-	CreatedOn          time.Time  `json:"created_on,omitempty"`
+	CreatedOn          time.Time  `json:"created_on,omitzero"`
 	CreatedBy          string     `json:"created_by,omitempty"`
-	UpdatedOn          time.Time  `json:"updated_on,omitempty"`
+	UpdatedOn          time.Time  `json:"updated_on,omitzero"`
 	UpdatedBy          string     `json:"updated_by,omitempty"`
-	Collection         Collection `json:"collection,omitempty"`
+	Collection         Collection `json:"collection,omitzero"`
 	ExpansionURL       string     `json:"expansion_url,omitempty"`
 	AutoExpand         bool       `json:"autoexpand,omitempty"`
 	Owner              string     `json:"owner,omitempty"`
@@ -57,9 +57,9 @@ type SourceVersion struct {
 	PreviousVersionURL string    `json:"previous_version_url,omitempty"`
 	RootVersionURL     string    `json:"root_version_url,omitempty"`
 	Extras             Extras    `json:"extras"`
-	CreatedOn          time.Time `json:"created_on,omitempty"`
+	CreatedOn          time.Time `json:"created_on,omitzero"`
 	CreatedBy          string    `json:"created_by,omitempty"`
-	UpdatedOn          time.Time `json:"updated_on,omitempty"`
+	UpdatedOn          time.Time `json:"updated_on,omitzero"`
 	UpdatedBy          string    `json:"updated_by,omitempty"`
 	Source             Source    `json:"source"`
 	VersionsURL        string    `json:"versions_url,omitempty"`
