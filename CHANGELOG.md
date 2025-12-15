@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.24.0](https://github.com/savannahghi/ocl/compare/v1.23.0...v1.24.0) (2025-12-15)
+
+
+### Features
+
+* adding methods to fetch codesystem from OCL-FHIR service ([#111](https://github.com/savannahghi/ocl/issues/111)) ([c68d1f4](https://github.com/savannahghi/ocl/commit/c68d1f4ede84a5cb6e4b518423ee476f0af719c1))
+
 ## [1.23.0](https://github.com/savannahghi/ocl/compare/v1.22.0...v1.23.0) (2025-12-09)
 
 
