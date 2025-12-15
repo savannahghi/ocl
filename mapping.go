@@ -8,8 +8,8 @@ import (
 )
 
 type Mapping struct {
-	Extras                  Extras    `json:"extras,omitempty"`
-	Checksums               Checksums `json:"checksums,omitempty"`
+	Extras                  Extras    `json:"extras,omitzero"`
+	Checksums               Checksums `json:"checksums,omitzero"`
 	ExternalID              any       `json:"external_id,omitempty"`
 	Retired                 bool      `json:"retired,omitempty"`
 	MapType                 string    `json:"map_type,omitempty"`
@@ -39,18 +39,18 @@ type Mapping struct {
 	UpdateComment           any       `json:"update_comment,omitempty"`
 	VersionURL              string    `json:"version_url,omitempty"`
 	UUID                    string    `json:"uuid,omitempty"`
-	VersionCreatedOn        time.Time `json:"version_created_on,omitempty"`
+	VersionCreatedOn        time.Time `json:"version_created_on,omitzero"`
 	FromSourceVersion       any       `json:"from_source_version,omitempty"`
 	ToSourceVersion         any       `json:"to_source_version,omitempty"`
 	FromConceptNameResolved string    `json:"from_concept_name_resolved,omitempty"`
 	ToConceptNameResolved   string    `json:"to_concept_name_resolved,omitempty"`
 	Type                    string    `json:"type,omitempty"`
 	SortWeight              any       `json:"sort_weight,omitempty"`
-	VersionUpdatedOn        time.Time `json:"version_updated_on,omitempty"`
+	VersionUpdatedOn        time.Time `json:"version_updated_on,omitzero"`
 	VersionUpdatedBy        string    `json:"version_updated_by,omitempty"`
 	LatestSourceVersion     any       `json:"latest_source_version,omitempty"`
-	CreatedOn               time.Time `json:"created_on,omitempty"`
-	UpdatedOn               time.Time `json:"updated_on,omitempty"`
+	CreatedOn               time.Time `json:"created_on,omitzero"`
+	UpdatedOn               time.Time `json:"updated_on,omitzero"`
 	CreatedBy               string    `json:"created_by,omitempty"`
 	UpdatedBy               string    `json:"updated_by,omitempty"`
 	PublicCanView           bool      `json:"public_can_view,omitempty"`

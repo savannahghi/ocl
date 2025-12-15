@@ -20,8 +20,8 @@ type OrganizationOutput struct {
 	Website           string    `json:"website,omitempty"`
 	Location          string    `json:"location,omitempty"`
 	Members           int       `json:"members,omitempty"`
-	CreatedOn         time.Time `json:"created_on,omitempty"`
-	UpdatedOn         time.Time `json:"updated_on,omitempty"`
+	CreatedOn         time.Time `json:"created_on,omitzero"`
+	UpdatedOn         time.Time `json:"updated_on,omitzero"`
 	URL               string    `json:"url,omitempty"`
 	Extras            any       `json:"extras,omitempty"`
 	CreatedBy         string    `json:"created_by,omitempty"`
@@ -50,7 +50,7 @@ type SimpleOrganizationInput struct {
 
 var validate = validator.New()
 
-func ValidateStruct(input interface{}) error {
+func ValidateStruct(input any) error {
 	return validate.Struct(input)
 }
 

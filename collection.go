@@ -21,7 +21,7 @@ type Collection struct {
 	Website          string    `json:"website,omitempty"`
 	Description      string    `json:"description,omitempty"`
 	PreferredSource  string    `json:"preferred_source,omitempty"`
-	Extras           Extras    `json:"extras,omitempty"`
+	Extras           Extras    `json:"extras,omitzero"`
 	Owner            string    `json:"owner,omitempty"`
 	OwnerType        string    `json:"owner_type,omitempty"`
 	OwnerURL         string    `json:"owner_url,omitempty"`
@@ -30,9 +30,9 @@ type Collection struct {
 	ConceptsURL      string    `json:"concepts_url,omitempty"`
 	MappingsURL      string    `json:"mappings_url,omitempty"`
 	Versions         int       `json:"versions,omitempty"`
-	CreatedOn        time.Time `json:"created_on,omitempty"`
+	CreatedOn        time.Time `json:"created_on,omitzero"`
 	CreatedBy        string    `json:"created_by,omitempty"`
-	UpdatedOn        time.Time `json:"updated_on,omitempty"`
+	UpdatedOn        time.Time `json:"updated_on,omitzero"`
 	UpdatedBy        string    `json:"updated_by,omitempty"`
 	Released         bool      `json:"released,omitempty"`
 	CanonicalURL     string    `json:"canonical_url,omitempty"`
@@ -50,7 +50,7 @@ type CollectionInput struct {
 	SupportedLocales []string `json:"supported_locales,omitempty"`
 	Website          string   `json:"website,omitempty"`
 	Description      string   `json:"description,omitempty"`
-	Extras           Extras   `json:"extras,omitempty"`
+	Extras           Extras   `json:"extras,omitzero"`
 }
 
 type Extras struct{}
