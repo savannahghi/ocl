@@ -65,6 +65,7 @@ type SourceVersion struct {
 	VersionsURL        string    `json:"versions_url,omitempty"`
 	ConceptsURL        string    `json:"concepts_url,omitempty"`
 	MappingsURL        string    `json:"mappings_url,omitempty"`
+	CanonicalURL       string    `json:"canonical_url,omitempty"`
 }
 
 type ResourceOperationTypeEnum string
