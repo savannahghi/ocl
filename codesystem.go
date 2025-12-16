@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"net/url"
 
 	model "github.com/savannahghi/hapi-fhir-go/models/r5/fhir500"
 )
@@ -33,6 +34,7 @@ func (c *Client) GetCodeSystem(ctx context.Context, headers Headers) (*model.Cod
 // OCL API endpoint pattern: /orgs/{org}/CodeSystem.
 func (c *Client) GetAllCodeSystems(ctx context.Context, headers Headers) (*model.Bundle, error) {
 	output := model.Bundle{}
+
 	url := fmt.Sprintf("orgs/%s/CodeSystem", headers.Organisation)
 
 	err := c.makeRequest(ctx, http.MethodGet, url, nil, nil, &output)
@@ -47,18 +49,20 @@ func (c *Client) GetAllCodeSystems(ctx context.Context, headers Headers) (*model
 //
 // Uses the canonical URL and version ID to fetch an exact CodeSystem version,
 // which is useful for ensuring consistent terminology across deployments.
-// OCL API endpoint pattern: /orgs/{org}/CodeSystem/{id}/{query_params}/*.
+// OCL API endpoint pattern: /fhir/CodeSystem/{query_params}/*.
 func (c *Client) GetCodeSystemVersion(
 	ctx context.Context, cannonicalURL string,
 	headers *Headers,
-) (*model.CodeSystem, error) {
-	output := model.CodeSystem{}
-	url := fmt.Sprintf(
-		"orgs/%s/CodeSystem/%s/url=%s&version=%s",
-		headers.Organisation, headers.Source, cannonicalURL, headers.VersionID,
-	)
+) (*model.Bundle, error) {
+	output := model.Bundle{}
 
-	err := c.makeRequest(ctx, http.MethodGet, url, nil, nil, &output)
+	path := "fhir/CodeSystem/"
+	params := url.Values{}
+
+	params.Add("url", cannonicalURL)
+	params.Add("version", headers.VersionID)
+
+	err := c.makeRequest(ctx, http.MethodGet, path, params, nil, &output)
 	if err != nil {
 		return nil, fmt.Errorf("failed to fetch CodeSystem version %w", err)
 	}

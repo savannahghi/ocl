@@ -37,7 +37,7 @@ type Source struct {
 	Version                string    `json:"version,omitempty"`
 	ConceptsURL            string    `json:"concepts_url,omitempty"`
 	MappingsURL            string    `json:"mappings_url,omitempty"`
-	CanonicalURL           any       `json:"canonical_url,omitempty"`
+	CanonicalURL           string    `json:"canonical_url,omitempty"`
 	Publisher              any       `json:"publisher,omitempty"`
 	Purpose                any       `json:"purpose,omitempty"`
 	Copyright              any       `json:"copyright,omitempty"`
