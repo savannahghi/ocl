@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.25.0](https://github.com/savannahghi/ocl/compare/v1.24.0...v1.25.0) (2025-12-16)
+
+
+### Features
+
+* fetch a single code system version ([#113](https://github.com/savannahghi/ocl/issues/113)) ([8c42bfc](https://github.com/savannahghi/ocl/commit/8c42bfcdd31955c035277f4cca86ee4a6a019df6))
+
 ## [1.24.0](https://github.com/savannahghi/ocl/compare/v1.23.0...v1.24.0) (2025-12-15)
 
 
