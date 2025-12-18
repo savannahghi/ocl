@@ -51,6 +51,7 @@ type CollectionInput struct {
 	Website          string   `json:"website,omitempty"`
 	Description      string   `json:"description,omitempty"`
 	Extras           Extras   `json:"extras,omitzero"`
+	CanonicalURL     string   `json:"canonical_url,omitempty"`
 }
 
 type Extras struct{}
