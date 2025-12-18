@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.26.0](https://github.com/savannahghi/ocl/compare/v1.25.0...v1.26.0) (2025-12-18)
+
+
+### Features
+
+* added the endpoint to get ValueSets and their versions ([#116](https://github.com/savannahghi/ocl/issues/116)) ([92a0a5a](https://github.com/savannahghi/ocl/commit/92a0a5a5f73a0b738746bd8dd88e6506c36fc68b))
+
 ## [1.25.0](https://github.com/savannahghi/ocl/compare/v1.24.0...v1.25.0) (2025-12-16)
 
 
