@@ -98,6 +98,7 @@ func IsDuplicateMnemonicError(err error) bool { //nolint:cyclop
 
 		if strings.Contains(s, "mnemonic") &&
 			(strings.Contains(s, "already exists") ||
+				strings.Contains(s, "duplicate key value violates unique constraint.") ||
 				strings.Contains(s, "must be unique") ||
 				strings.Contains(s, "to_concept_code must be unique.") ||
 				strings.Contains(s, "unique")) {

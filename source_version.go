@@ -93,3 +93,28 @@ func (c *Client) ListSourceVersions(ctx context.Context, headers *Headers) ([]So
 
 	return sourceVersions, nil
 }
+
+func (c *Client) UpdateSourceVersion(
+	ctx context.Context, input *SourceVersionInput,
+	headers *Headers,
+) (*SourceVersion, error) {
+	path := fmt.Sprintf("/orgs/%s/sources/%s/%s/", headers.Organisation, headers.Source, headers.VersionID)
+
+	params := RequestParameters{
+		OrganisationID: &headers.Organisation,
+		SourceID:       &headers.Source,
+		VersionID:      &headers.VersionID,
+	}
+	if !isValidInput(params, UpdateSourceVersion) {
+		return nil, ErrInvalidIdentifierInput
+	}
+
+	var sourceVersion SourceVersion
+
+	err := c.makeRequest(ctx, http.MethodPut, path, nil, input, &sourceVersion)
+	if err != nil {
+		return nil, err
+	}
+
+	return &sourceVersion, nil
+}

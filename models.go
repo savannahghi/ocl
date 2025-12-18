@@ -85,6 +85,7 @@ const (
 	CreateSourceVersionOperation  ResourceOperationTypeEnum = "CREATE_SOURCE_VERSION"
 	ReleaseSourceVersionOperation ResourceOperationTypeEnum = "RELEASE_SOURCE_VERSION"
 	RetireSourceVersionOperation  ResourceOperationTypeEnum = "RETIRE_SOURCE_VERSION"
+	UpdateSourceVersion           ResourceOperationTypeEnum = "UPDATE_SOURCE_VERSION"
 )
 
 var ErrInvalidIdentifierInput = errors.New(
@@ -112,6 +113,7 @@ var requiredParams = map[ResourceOperationTypeEnum][]string{
 	CreateSourceVersionOperation:      {"OrganisationID", "SourceID"},
 	ReleaseSourceVersionOperation:     {"OrganisationID", "SourceID", "VersionID"},
 	RetireSourceVersionOperation:      {"OrganisationID", "SourceID", "VersionID"},
+	UpdateSourceVersion:               {"OrganisationID", "SourceID", "VersionID"},
 }
 
 // isValidInput: checks whether the required identifiers for a given operation are not nil.
