@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.26.1](https://github.com/savannahghi/ocl/compare/v1.26.0...v1.26.1) (2026-01-13)
+
+
+### Bug Fixes
+
+* add params to list concepts api ([#118](https://github.com/savannahghi/ocl/issues/118)) ([2db19c7](https://github.com/savannahghi/ocl/commit/2db19c75448fbfdae3d0118c79ffb7cb9f29270c))
+
 ## [1.26.0](https://github.com/savannahghi/ocl/compare/v1.25.0...v1.26.0) (2025-12-18)
 
 
