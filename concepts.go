@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"net/url"
 	"time"
 )
 
@@ -103,10 +104,10 @@ func (c *Client) FetchConcept(ctx context.Context, headers *Headers) (*Concept, 
 	return &resp, nil
 }
 
-func (c *Client) ListConcepts(ctx context.Context, headers *Headers) (*ConceptPage, error) {
+func (c *Client) ListConcepts(ctx context.Context, headers *Headers, params url.Values) (*ConceptPage, error) {
 	var resp ConceptPage
 
-	err := c.makeRequest(ctx, http.MethodGet, composeConceptsURL(headers), nil, nil, &resp)
+	err := c.makeRequest(ctx, http.MethodGet, composeConceptsURL(headers), params, nil, &resp)
 	if err != nil {
 		return nil, fmt.Errorf("failed to list concepts: %w", err)
 	}
