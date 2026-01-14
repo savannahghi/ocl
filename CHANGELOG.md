@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.27.0](https://github.com/savannahghi/ocl/compare/v1.26.1...v1.27.0) (2026-01-14)
+
+
+### Features
+
+* add api to check if org exists ([#120](https://github.com/savannahghi/ocl/issues/120)) ([ada63e0](https://github.com/savannahghi/ocl/commit/ada63e0f073b90a8067ec62017b577fb928db003))
+
 ## [1.26.1](https://github.com/savannahghi/ocl/compare/v1.26.0...v1.26.1) (2026-01-13)
 
 
