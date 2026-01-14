@@ -125,3 +125,21 @@ func (c *Client) DeleteOrganization(ctx context.Context, organizationID string) 
 
 	return nil
 }
+
+// OrganizationExists checks whether an organization exists in OCL and returns a boolean.
+func (c *Client) OrganizationExists(ctx context.Context, organizationID string) (bool, error) {
+	if organizationID == "" {
+		return false, errors.New("organization ID cannot be null")
+	}
+
+	_, err := c.GetOrganization(ctx, organizationID)
+	if err != nil {
+		if ResourceNotFoundErr(err) {
+			return false, nil
+		}
+
+		return false, err
+	}
+
+	return true, nil
+}
