@@ -2,6 +2,7 @@ package ocl
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 	"time"
@@ -123,4 +124,26 @@ func (c *Client) GetCollection(ctx context.Context, headers *Headers) (*Collecti
 	}
 
 	return &output, nil
+}
+
+// CollectionExists checks whether a collection exists in OCL and returns a boolean.
+func (c *Client) CollectionExists(ctx context.Context, headers *Headers) (bool, error) {
+	if headers.Organisation == "" {
+		return false, errors.New("organization ID cannot be null")
+	}
+
+	if headers.Collection == "" {
+		return false, errors.New("collection ID cannot be null")
+	}
+
+	_, err := c.GetCollection(ctx, headers)
+	if err != nil {
+		if ResourceNotFoundErr(err) {
+			return false, nil
+		}
+
+		return false, err
+	}
+
+	return true, nil
 }
