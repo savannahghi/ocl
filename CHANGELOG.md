@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.28.0](https://github.com/savannahghi/ocl/compare/v1.27.0...v1.28.0) (2026-01-14)
+
+
+### Features
+
+* add api to check if source and collection exists ([#122](https://github.com/savannahghi/ocl/issues/122)) ([d8751f3](https://github.com/savannahghi/ocl/commit/d8751f3d8366f6b6833f3e79923636a2eb8cbb61))
+
 ## [1.27.0](https://github.com/savannahghi/ocl/compare/v1.26.1...v1.27.0) (2026-01-14)
 
 
