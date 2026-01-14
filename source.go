@@ -140,3 +140,25 @@ func (c *Client) DownloadVersionExport(ctx context.Context, headers *Headers) (i
 
 	return c.streamRawData(ctx, http.MethodGet, sourceVersionPath, nil)
 }
+
+// SourceExists checks whether a source exists in OCL and returns a boolean.
+func (c *Client) SourceExists(ctx context.Context, headers *Headers) (bool, error) {
+	if headers.Organisation == "" {
+		return false, errors.New("organization ID cannot be null")
+	}
+
+	if headers.Source == "" {
+		return false, errors.New("source ID cannot be null")
+	}
+
+	_, err := c.GetOrganizationSource(ctx, headers)
+	if err != nil {
+		if ResourceNotFoundErr(err) {
+			return false, nil
+		}
+
+		return false, err
+	}
+
+	return true, nil
+}
