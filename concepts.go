@@ -24,6 +24,7 @@ type Concept struct {
 	OwnerURL            string         `json:"owner_url,omitempty"`
 	DisplayName         string         `json:"display_name,omitempty"`
 	DisplayLocale       string         `json:"display_locale,omitempty"`
+	Locale              *string        `json:"locale,omitempty"`
 	Names               []Names        `json:"names,omitempty"`
 	Descriptions        []Descriptions `json:"descriptions,omitempty"`
 	CreatedOn           time.Time      `json:"created_on,omitzero"`
@@ -39,6 +40,33 @@ type Concept struct {
 	PublicCanView       bool           `json:"public_can_view,omitempty"`
 	VersionedObjectID   int            `json:"versioned_object_id,omitempty"`
 	LatestSourceVersion string         `json:"latest_source_version,omitempty"`
+	VersionCreatedBy    string         `json:"version_created_by,omitempty"`
+	VersionCreatedOn    time.Time      `json:"version_created_on,omitzero"`
+	VersionUpdatedBy    string         `json:"version_updated_by,omitempty"`
+	VersionUpdatedOn    time.Time      `json:"version_updated_on,omitzero"`
+	IsLatestVersion     bool           `json:"is_latest_version,omitempty"`
+	SearchMeta          *SearchMeta    `json:"search_meta,omitempty"`
+	Property            []any          `json:"property,omitempty"`
+}
+
+// SearchMeta contains search relevance information returned when searching concepts.
+type SearchMeta struct {
+	SearchScore      float64          `json:"search_score,omitempty"`
+	SearchConfidence string           `json:"search_confidence,omitempty"`
+	SearchHighlight  *SearchHighlight `json:"search_highlight,omitempty"`
+}
+
+// SearchHighlight contains highlighted search matches.
+type SearchHighlight struct {
+	Name        []string `json:"name,omitempty"`
+	Description []string `json:"description,omitempty"`
+	Synonyms    []string `json:"synonyms,omitempty"`
+}
+
+// SimpleConcept is a minimal representation of a concept with only ID and DisplayName.
+type SimpleConcept struct {
+	ID          string `json:"id"`
+	DisplayName string `json:"display_name"`
 }
 
 type Names struct {
@@ -59,13 +87,6 @@ type Descriptions struct {
 	Locale          string `json:"locale,omitempty"`
 	DescriptionType string `json:"description_type,omitempty"`
 	Checksum        string `json:"checksum,omitempty"`
-}
-
-type ConceptPage struct {
-	Count    int        `json:"count"`
-	Next     *string    `json:"next"`
-	Previous *string    `json:"previous"`
-	Results  []*Concept `json:"results"`
 }
 
 // Concept is a unit of meaning that can represent a clinical idea e.g a disease, symptom, medication etc.
@@ -104,15 +125,33 @@ func (c *Client) FetchConcept(ctx context.Context, headers *Headers) (*Concept, 
 	return &resp, nil
 }
 
-func (c *Client) ListConcepts(ctx context.Context, headers *Headers, params url.Values) (*ConceptPage, error) {
-	var resp ConceptPage
+func (c *Client) ListConcepts(ctx context.Context, headers *Headers, params url.Values) ([]Concept, error) {
+	var resp []Concept
 
 	err := c.makeRequest(ctx, http.MethodGet, composeConceptsURL(headers), params, nil, &resp)
 	if err != nil {
 		return nil, fmt.Errorf("failed to list concepts: %w", err)
 	}
 
-	return &resp, nil
+	return resp, nil
+}
+
+// ListSimpleConcepts searches for concepts and returns a simplified list with only ID and DisplayName.
+func (c *Client) ListSimpleConcepts(ctx context.Context, headers *Headers, params url.Values) ([]SimpleConcept, error) {
+	concepts, err := c.ListConcepts(ctx, headers, params)
+	if err != nil {
+		return nil, err
+	}
+
+	result := make([]SimpleConcept, len(concepts))
+	for i, concept := range concepts {
+		result[i] = SimpleConcept{
+			ID:          concept.ID,
+			DisplayName: concept.DisplayName,
+		}
+	}
+
+	return result, nil
 }
 
 // composeConceptsURL forms the create/get concepts url. It follows this path
