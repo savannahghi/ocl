@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.29.0](https://github.com/savannahghi/ocl/compare/v1.28.0...v1.29.0) (2026-01-15)
+
+
+### Features
+
+* add api to list simple concept ([#124](https://github.com/savannahghi/ocl/issues/124)) ([0afde99](https://github.com/savannahghi/ocl/commit/0afde99242b4bfecb4df9fab6f6b89596de657b1))
+
 ## [1.28.0](https://github.com/savannahghi/ocl/compare/v1.27.0...v1.28.0) (2026-01-14)
 
 
