@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"net/url"
 	"time"
 )
 
@@ -146,4 +147,57 @@ func (c *Client) CollectionExists(ctx context.Context, headers *Headers) (bool, 
 	}
 
 	return true, nil
+}
+
+// ListCollectionConcepts lists all concepts referenced in a collection.
+// API: GET /orgs/:org/collections/:collection/[:version/]concepts/.
+func (c *Client) ListCollectionConcepts(
+	ctx context.Context,
+	headers *Headers,
+	params url.Values,
+) ([]*Concept, error) {
+	err := validateCollectionHeaders(headers)
+	if err != nil {
+		return nil, err
+	}
+
+	var resp []*Concept
+
+	path := composeCollectionPath(headers) + "/concepts/"
+
+	err = c.makeRequest(ctx, http.MethodGet, path, params, nil, &resp)
+	if err != nil {
+		return nil, fmt.Errorf("failed to list collection concepts: %w", err)
+	}
+
+	return resp, nil
+}
+
+// Helper to validate collection-related headers.
+func validateCollectionHeaders(headers *Headers) error {
+	if headers == nil {
+		return errors.New("headers cannot be nil")
+	}
+
+	if headers.Organisation == "" {
+		return errors.New("organisation is required")
+	}
+
+	if headers.Collection == "" {
+		return errors.New("collection is required")
+	}
+
+	return nil
+}
+
+// composeCollectionPath builds the base path for collection operations
+// Pattern: /orgs/{org}/collections/{collection} or /orgs/{org}/collections/{collection}/{version}.
+func composeCollectionPath(headers *Headers) string {
+	path := "orgs/" + headers.Organisation + "/collections/" + headers.Collection
+
+	if headers.VersionID != "" {
+		path += "/" + headers.VersionID
+	}
+
+	return path
 }
