@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.30.0](https://github.com/savannahghi/ocl/compare/v1.29.0...v1.30.0) (2026-01-16)
+
+
+### Features
+
+* list concepts in a collection ([#126](https://github.com/savannahghi/ocl/issues/126)) ([ae6cb17](https://github.com/savannahghi/ocl/commit/ae6cb173a3ba64874753c05b76e35ad93f9c6c76))
+
 ## [1.29.0](https://github.com/savannahghi/ocl/compare/v1.28.0...v1.29.0) (2026-01-15)
 
 
