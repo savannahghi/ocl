@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.31.0](https://github.com/savannahghi/ocl/compare/v1.30.0...v1.31.0) (2026-01-23)
+
+
+### Features
+
+* add library function to fetch mappings from OCL ([#128](https://github.com/savannahghi/ocl/issues/128)) ([3b6d13f](https://github.com/savannahghi/ocl/commit/3b6d13fa8f6c83de9cf60eb620f677fc6daa432d))
+
+
+### Bug Fixes
+
+* add inlcudMappings query param when fetching concepts from OCL ([#129](https://github.com/savannahghi/ocl/issues/129)) ([4757281](https://github.com/savannahghi/ocl/commit/4757281eec26f85ca7c49ffcedc8e3dbb4ec05e5))
+
 ## [1.30.0](https://github.com/savannahghi/ocl/compare/v1.29.0...v1.30.0) (2026-01-16)
 
 
