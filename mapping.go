@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"net/url"
 	"time"
 )
 
@@ -93,4 +94,26 @@ func (c *Client) UpdateMappings(ctx context.Context, mappings *Mapping, headers 
 	}
 
 	return &resp, nil
+}
+
+func (c *Client) FetchMappings(
+	ctx context.Context,
+	searchParams map[string]string,
+	headers *Headers,
+) ([]Mapping, error) {
+	var resp []Mapping
+
+	mappingsURL := composeMappingsPath(headers)
+	query := url.Values{}
+
+	for param, value := range searchParams {
+		query.Set(param, value)
+	}
+
+	err := c.makeRequest(ctx, http.MethodGet, mappingsURL, query, nil, &resp)
+	if err != nil {
+		return nil, err
+	}
+
+	return resp, nil
 }
