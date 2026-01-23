@@ -117,7 +117,10 @@ func (c *Client) UpdateConcept(ctx context.Context, concept *Concept, headers *H
 func (c *Client) FetchConcept(ctx context.Context, headers *Headers) (*Concept, error) {
 	var resp Concept
 
-	err := c.makeRequest(ctx, http.MethodGet, composeConceptURL(headers), nil, nil, &resp)
+	query := url.Values{}
+	query.Set("includeMappings", "true")
+
+	err := c.makeRequest(ctx, http.MethodGet, composeConceptURL(headers), query, nil, &resp)
 	if err != nil {
 		return nil, fmt.Errorf("failed to fetch concept: %w", err)
 	}
