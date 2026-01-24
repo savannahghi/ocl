@@ -11,6 +11,7 @@ import (
 type Concept struct {
 	UUID                string         `json:"uuid,omitempty"`
 	Extras              map[string]any `json:"extras,omitempty"`
+	Mappings            []Mapping      `json:"mappings,omitempty"`
 	Checksums           map[string]any `json:"checksums,omitempty"`
 	ID                  string         `json:"id,omitempty"`
 	ExternalID          string         `json:"external_id,omitempty"`
