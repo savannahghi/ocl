@@ -81,6 +81,26 @@ func TestClient_FetchMappings(t *testing.T) {
 			want:         "Internal server error",
 			responseCode: 500,
 		},
+		{
+			name: "Sad case: error occurred while searching for mapping - incorrect source or org",
+			fields: fields{
+				token: "test-token",
+				HTTP:  http.DefaultClient,
+			},
+			args: args{
+				ctx: t.Context(),
+				searchParams: map[string]string{
+					"toConceptCode": "REG-10001",
+				},
+				headers: &Headers{
+					Organisation: "non-existent",
+					Source:       "test-source",
+				},
+			},
+			wantErr:      true,
+			want:         "Not found",
+			responseCode: 400,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
