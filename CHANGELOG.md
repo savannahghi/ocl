@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.31.1](https://github.com/savannahghi/ocl/compare/v1.31.0...v1.31.1) (2026-01-24)
+
+
+### Bug Fixes
+
+* add test case to cover 404 not found when fetching mappings ([#132](https://github.com/savannahghi/ocl/issues/132)) ([754903b](https://github.com/savannahghi/ocl/commit/754903bb7c51eba352160696fb292b50bfe36aae))
+
 ## [1.31.0](https://github.com/savannahghi/ocl/compare/v1.30.0...v1.31.0) (2026-01-23)
 
 
