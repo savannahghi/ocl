@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.32.0](https://github.com/savannahghi/ocl/compare/v1.31.1...v1.32.0) (2026-02-01)
+
+
+### Features
+
+* search concepts in a collection ([#134](https://github.com/savannahghi/ocl/issues/134)) ([6fc210c](https://github.com/savannahghi/ocl/commit/6fc210c91544e2ea11f75528de74930452baafbd))
+
 ## [1.31.1](https://github.com/savannahghi/ocl/compare/v1.31.0...v1.31.1) (2026-01-24)
 
 
