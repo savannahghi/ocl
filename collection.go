@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"strconv"
 	"time"
 )
 
@@ -200,4 +201,57 @@ func composeCollectionPath(headers *Headers) string {
 	}
 
 	return path
+}
+
+// CollectionConceptSearchParams contains parameters for searching concepts in a collection expansion.
+type CollectionConceptSearchParams struct {
+	Query  string
+	Limit  int
+	Offset int
+}
+
+// SearchCollectionConcepts searches for concepts within an OCL collection expansion.
+// This calls the endpoint: GET /orgs/:org/collections/:collection/HEAD/expansions/autoexpand-HEAD/concepts/.
+func (c *Client) SearchCollectionConcepts(
+	ctx context.Context,
+	headers *Headers,
+	params CollectionConceptSearchParams,
+) ([]Concept, error) {
+	if params.Limit <= 0 {
+		params.Limit = 25
+	}
+
+	query := url.Values{}
+	if params.Query != "" {
+		query.Set("q", params.Query)
+	}
+
+	query.Set("limit", strconv.Itoa(params.Limit))
+	query.Set("offset", strconv.Itoa(params.Offset))
+
+	var resp []Concept
+
+	err := c.makeRequest(
+		ctx,
+		http.MethodGet,
+		composeCollectionExpansionConceptsURL(headers),
+		query,
+		nil,
+		&resp,
+	)
+	if err != nil {
+		return nil, fmt.Errorf("failed to search collection concepts: %w", err)
+	}
+
+	return resp, nil
+}
+
+// composeCollectionExpansionConceptsURL forms the URL to search concepts in a collection expansion.
+// It follows this path: /orgs/{org}/collections/{collection}/HEAD/expansions/autoexpand-HEAD/concepts/.
+func composeCollectionExpansionConceptsURL(headers *Headers) string {
+	return fmt.Sprintf(
+		"orgs/%s/collections/%s/HEAD/expansions/autoexpand-HEAD/concepts/",
+		headers.Organisation,
+		headers.Collection,
+	)
 }
