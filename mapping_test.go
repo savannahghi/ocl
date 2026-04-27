@@ -126,3 +126,116 @@ func TestClient_FetchMappings(t *testing.T) {
 		})
 	}
 }
+
+func TestClient_FetchConceptMappings(t *testing.T) {
+	type fields struct {
+		token string
+		HTTP  *http.Client
+	}
+	type args struct {
+		ctx          context.Context
+		searchParams map[string]string
+		headers      *Headers
+	}
+	tests := []struct {
+		name         string
+		fields       fields
+		args         args
+		want         any
+		responseCode int
+		wantErr      bool
+	}{
+		{
+			name: "Happy case: successfully searched for mapping",
+			fields: fields{
+				token: "test-token",
+				HTTP:  http.DefaultClient,
+			},
+			args: args{
+				ctx: t.Context(),
+				searchParams: map[string]string{
+					"toConceptCode": "REG-10001",
+				},
+				headers: &Headers{
+					Organisation: "org-001",
+					Source:       "test-source",
+					MappingID:    "2434",
+					ConceptID:    "02",
+				},
+			},
+			wantErr: false,
+			want: []Mapping{
+				{
+					Retired: false,
+				},
+			},
+			responseCode: 200,
+		},
+		{
+			name: "Sad case: error occurred while searching for mapping",
+			fields: fields{
+				token: "test-token",
+				HTTP:  http.DefaultClient,
+			},
+			args: args{
+				ctx: t.Context(),
+				searchParams: map[string]string{
+					"toConceptCode": "REG-10001",
+				},
+				headers: &Headers{
+					Organisation: "org-001",
+					Source:       "test-source",
+					MappingID:    "2434",
+					ConceptID:    "02",
+				},
+			},
+			wantErr:      true,
+			want:         "Internal server error",
+			responseCode: 500,
+		},
+		{
+			name: "Sad case: error occurred while searching for mapping - incorrect source or org",
+			fields: fields{
+				token: "test-token",
+				HTTP:  http.DefaultClient,
+			},
+			args: args{
+				ctx: t.Context(),
+				searchParams: map[string]string{
+					"toConceptCode": "REG-10001",
+				},
+				headers: &Headers{
+					Organisation: "non-existent",
+					Source:       "test-source",
+					ConceptID:    "02",
+				},
+			},
+			wantErr:      true,
+			want:         "Not found",
+			responseCode: 400,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			server := testServer(tt.responseCode, tt.want)
+			defer server.Close()
+
+			c := &Client{
+				baseURL: server.URL,
+				token:   tt.fields.token,
+				HTTP:    tt.fields.HTTP,
+			}
+
+			got, err := c.FetchConceptMappings(tt.args.ctx, tt.args.searchParams, tt.args.headers)
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("Client.FetchConceptMappings() error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if tt.wantErr {
+				return
+			}
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("Client.FetchConceptMappings() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
