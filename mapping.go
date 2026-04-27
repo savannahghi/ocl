@@ -117,3 +117,25 @@ func (c *Client) FetchMappings(
 
 	return resp, nil
 }
+
+func (c *Client) FetchConceptMappings(
+	ctx context.Context,
+	searchParams map[string]string,
+	headers *Headers,
+) ([]Mapping, error) {
+	var resp []Mapping
+
+	mappingsURL := composeConceptMappingsPath(headers)
+	query := url.Values{}
+
+	for param, value := range searchParams {
+		query.Set(param, value)
+	}
+
+	err := c.makeRequest(ctx, http.MethodGet, mappingsURL, query, nil, &resp)
+	if err != nil {
+		return nil, err
+	}
+
+	return resp, nil
+}

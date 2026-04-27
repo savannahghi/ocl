@@ -184,9 +184,18 @@ func composeMappingsPath(headers *Headers) string {
 	return "orgs/" + headers.Organisation + "/sources/" + headers.Source + "/mappings/"
 }
 
+// composeConceptMappingsPath creates a url path with the org, source & concept set.
+// It will follow this structure
+// /orgs/{org}/sources/{source}/concepts/{concept_id}/mappings.
+func composeConceptMappingsPath(headers *Headers) string {
+	return fmt.Sprintf("orgs/%s/sources/%s/concepts/%s/mappings/",
+		headers.Organisation, headers.Source, headers.ConceptID)
+}
+
 // composeUpdateMappingsPath creates a url path with the org, source & mapping set.
 // It will follow this structure
 // /orgs/{org}/sources/{source}/mappings/{mapping}.
 func composeUpdateMappingsPath(headers *Headers) string {
-	return "orgs/" + headers.Organisation + "/sources/" + headers.Source + "/mappings/" + headers.MappingID
+	return fmt.Sprintf("orgs/%s/sources/%s/mappings/%s",
+		headers.Organisation, headers.Source, headers.MappingID)
 }
