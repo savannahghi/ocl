@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.33.0](https://github.com/savannahghi/ocl/compare/v1.32.0...v1.33.0) (2026-04-28)
+
+
+### Features
+
+* implement a method to fetch mappings for a specific concept ([#136](https://github.com/savannahghi/ocl/issues/136)) ([c8eded3](https://github.com/savannahghi/ocl/commit/c8eded3684202ff7a8f33d415f973015b184a605))
+
 ## [1.32.0](https://github.com/savannahghi/ocl/compare/v1.31.1...v1.32.0) (2026-02-01)
 
 
