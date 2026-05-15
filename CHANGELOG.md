@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.34.0](https://github.com/savannahghi/ocl/compare/v1.33.0...v1.34.0) (2026-05-15)
+
+
+### Features
+
+* tune default HTTP transport and expose WithHTTPClient option ([#138](https://github.com/savannahghi/ocl/issues/138)) ([eae952e](https://github.com/savannahghi/ocl/commit/eae952e10bb8188c9c3e901282d9b0b80386fd5b))
+
 ## [1.33.0](https://github.com/savannahghi/ocl/compare/v1.32.0...v1.33.0) (2026-04-28)
 
 
