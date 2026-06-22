@@ -90,6 +90,34 @@ func WithHTTPClient(httpClient *http.Client) ClientOption {
 	}
 }
 
+// WithRetry installs a transport-level retry policy on the client. Retries
+// wrap the existing transport, so they compose with WithHTTPClient and any
+// tracing RoundTripper. Only idempotent methods (GET/HEAD/PUT/DELETE/OPTIONS
+// by default) with replayable bodies are retried, on transient transport
+// errors and the configured RetryableStatuses (default 408/429/5xx). Backoff
+// honours the request context, so a caller's deadline still bounds the total
+// time spent across attempts. The zero RetryPolicy is filled with sensible
+// defaults (3 attempts, 100ms→5s jittered exponential backoff).
+func WithRetry(policy RetryPolicy) ClientOption {
+	return func(c *Client) {
+		if c.HTTP == nil {
+			c.HTTP = NewDefaultHTTPClient()
+		}
+
+		policy.applyDefaults()
+
+		inner := c.HTTP.Transport
+		if inner == nil {
+			inner = http.DefaultTransport
+		}
+
+		c.HTTP.Transport = &retryRoundTripper{
+			inner:  inner,
+			policy: policy,
+		}
+	}
+}
+
 // NewClientFromEnvVars creates a new client where the needed fields are
 // retrieved from the environment variables.
 func NewClientFromEnvVars() (*Client, error) {
