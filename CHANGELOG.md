@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.35.0](https://github.com/savannahghi/ocl/compare/v1.34.0...v1.35.0) (2026-06-22)
+
+
+### Features
+
+* add configurable retry policy with WithRetry option ([#140](https://github.com/savannahghi/ocl/issues/140)) ([fbdf65e](https://github.com/savannahghi/ocl/commit/fbdf65e8f0e0fe03cd0a1f5f0cf7650cfb40d0dd))
+
 ## [1.34.0](https://github.com/savannahghi/ocl/compare/v1.33.0...v1.34.0) (2026-05-15)
 
 
